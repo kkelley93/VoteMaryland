@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">VoteMaryland</string>
     <string name="title_activity_registration_webview">registration_webview</string>
+    <string name="title_activity_candidate_list">candidate_list</string>
 </resources>
