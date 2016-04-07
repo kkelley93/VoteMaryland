@@ -15,7 +15,7 @@ public class registration_webview extends AppCompatActivity {
         setContentView(R.layout.activity_registration_webview);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+//TJ SUCKS
 
     }
 
