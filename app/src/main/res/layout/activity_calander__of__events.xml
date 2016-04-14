@@ -10,10 +10,4 @@
     tools:context="xyz.kylekelley.votemaryland.Calander_Of_Events"
     android:id="@+id/i">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"></LinearLayout>
 </RelativeLayout>
