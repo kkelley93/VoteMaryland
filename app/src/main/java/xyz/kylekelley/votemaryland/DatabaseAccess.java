@@ -64,7 +64,7 @@ public class DatabaseAccess {
         Cursor cursor = database.rawQuery("SELECT First, Last FROM CandidateList", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(0));
+            list.add(cursor.getString(0) + " "+ cursor.getString(1));
             cursor.moveToNext();
         }
         cursor.close();
