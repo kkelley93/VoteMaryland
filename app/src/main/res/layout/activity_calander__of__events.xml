@@ -18,10 +18,18 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
 
+
         <CalendarView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/calendarView"
             android:layout_gravity="center_horizontal" />
+
+            <ListView
+                android:id="@+id/eventList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></ListView>
+
     </LinearLayout>
+
 </RelativeLayout>
