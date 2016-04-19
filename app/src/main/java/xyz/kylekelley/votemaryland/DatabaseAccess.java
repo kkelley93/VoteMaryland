@@ -59,7 +59,7 @@ public class DatabaseAccess {
      *
      * @return a List of quotes
      */
-    public List<String> getQuotes() {
+    public List<String> getNames() {
         List<String> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT First, Last FROM CandidateList", null);
         cursor.moveToFirst();
