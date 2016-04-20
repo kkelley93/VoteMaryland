@@ -27,7 +27,9 @@
         <activity android:name=".FindMyPollingPlace" />
         <activity android:name=".FAQ" />
         <activity android:name=".EventDetail" />
-        <activity android:name=".CandidateDetail"></activity>
+        <activity android:name=".external_webview"/>
+        <activity android:name=".CandidateDetail">
+        </activity>
     </application>
 
 </manifest>
