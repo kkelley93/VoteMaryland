@@ -21,7 +21,8 @@ public class candidate_list extends AppCompatActivity {
         setContentView(R.layout.activity_candidate_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        //Opens connection to MD_Candidates.db, runs getNames() function in DatabaseAccess class
+        //displays names of candidates in a generic ListView.
         this.listView = (ListView) findViewById(R.id.listView);
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();

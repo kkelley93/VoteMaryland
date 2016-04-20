@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_registration_webview);
     }
 
     public void launchCalendar(View v){
@@ -47,5 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Intent myIntent = new Intent(MainActivity.this, registration_webview.class);
         MainActivity.this.startActivity(myIntent);
     }
+
+
 
 }
