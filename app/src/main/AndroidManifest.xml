@@ -16,20 +16,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".registration_webview"
-            android:label="@string/title_activity_registration_webview"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".candidate_list"
             android:label="@string/title_activity_candidate_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Calander_Of_Events" />
-        <activity android:name=".FindMyPollingPlace" />
-        <activity android:name=".FAQ" />
-        <activity android:name=".EventDetail" />
-        <activity android:name=".external_webview"/>
-        <activity android:name=".CandidateDetail">
-        </activity>
     </application>
 
 </manifest>

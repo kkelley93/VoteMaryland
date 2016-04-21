@@ -55,9 +55,9 @@ public class DatabaseAccess {
     }
 
     /**
-     * Read all quotes from the database.
+     * Read all names from the database.
      *
-     * @return a List of quotes
+     * @return a List of names
      */
     public List<String> getNames() {
         List<String> list = new ArrayList<>();
