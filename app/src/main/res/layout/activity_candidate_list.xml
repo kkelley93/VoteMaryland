@@ -27,7 +27,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="center" />
 
-    <include layout="@layout/content_candidate_list" />
 
 
 
