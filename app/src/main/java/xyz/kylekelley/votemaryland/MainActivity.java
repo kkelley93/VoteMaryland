@@ -1,6 +1,7 @@
 package xyz.kylekelley.votemaryland;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
     public void launchRegistration(View v){
         Intent myIntent = new Intent(MainActivity.this, registration_webview.class);
         MainActivity.this.startActivity(myIntent);
+    }
+
+    public void launchExternalWebview(View v){
+        String url = "https://voterservices.elections.maryland.gov/VoterSearch";
+        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(myIntent);
+
     }
 
 

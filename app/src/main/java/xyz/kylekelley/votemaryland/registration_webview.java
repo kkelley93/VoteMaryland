@@ -1,6 +1,7 @@
 package xyz.kylekelley.votemaryland;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,9 +18,6 @@ public class registration_webview extends AppCompatActivity {
 
     }
 
-    public void launchExternalWebview(View v){
-        Intent myIntent = new Intent(registration_webview.this, external_webview.class);
-        registration_webview.this.startActivity(myIntent);
-    }
+
 
 }
