@@ -26,7 +26,14 @@
         <activity android:name=".Calander_Of_Events" />
         <activity android:name=".FindMyPollingPlace" />
         <activity android:name=".FAQ" />
-        <activity android:name=".EventDetail" />
+        <activity android:name=".EventDetail"
+            android:theme = "@style/AppTheme.NoActionBar"
+            android:parentActivityName=".Calander_Of_Events">
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Calander_Of_Events"/>
+        </activity>
+
         <activity android:name=".CandidateDetail"></activity>
     </application>
 
