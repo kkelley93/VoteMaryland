@@ -1,7 +1,11 @@
 package xyz.kylekelley.votemaryland;
 
+import android.app.NotificationManager;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -53,6 +57,19 @@ public class MainActivity extends AppCompatActivity {
         String url = "https://voterservices.elections.maryland.gov/VoterSearch";
         Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(myIntent);
+
+    }
+    public void launchNotification(View v){
+
+        /*create notifications*/
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        builder.setSmallIcon(R.drawable.ic_notifications_active);
+        builder.setContentTitle("My Notification");
+        builder.setContentText("Reminder: Maryland Votes Today!");
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(1111, builder.build());
+
+
 
     }
 
