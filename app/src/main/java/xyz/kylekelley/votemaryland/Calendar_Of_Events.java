@@ -1,5 +1,6 @@
 package xyz.kylekelley.votemaryland;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -8,8 +9,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Calendar_Of_Events extends AppCompatActivity {
     private ListView mDrawerList;
@@ -35,9 +38,30 @@ public class Calendar_Of_Events extends AppCompatActivity {
     }
 
     private void addDrawerItems() {
-        String[] osArray = {"Candidate List", "Calendar of Events", "FAQ", "FindMyPollingPlace", "Registration"};
+        String[] osArray = getResources().getStringArray(R.array.activities_array);
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    Intent myIntent = new Intent(Calendar_Of_Events.this, candidate_list.class);
+                    Calendar_Of_Events.this.startActivity(myIntent);
+                } else if (position == 1) {
+                    Toast.makeText(Calendar_Of_Events.this, "Already on page", Toast.LENGTH_SHORT).show();
+                } else if (position == 2) {
+                    Intent myIntent = new Intent(Calendar_Of_Events.this, FindMyPollingPlace.class);
+                    Calendar_Of_Events.this.startActivity(myIntent);
+                } else if (position == 3) {
+                    Intent myIntent = new Intent(Calendar_Of_Events.this, registration_webview.class);
+                    Calendar_Of_Events.this.startActivity(myIntent);
+                } else {
+                    Intent myIntent = new Intent(Calendar_Of_Events.this, FAQ.class);
+                    Calendar_Of_Events.this.startActivity(myIntent);
+                }
+            }
+        });
     }
 
     private void setupDrawer() {
@@ -46,7 +70,7 @@ public class Calendar_Of_Events extends AppCompatActivity {
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                getSupportActionBar().setTitle("Navigation!");
+                getSupportActionBar().setTitle("Main Menu");
                 invalidateOptionsMenu();
             }
 
@@ -59,7 +83,7 @@ public class Calendar_Of_Events extends AppCompatActivity {
         };
 
         mDrawerToggle.setDrawerIndicatorEnabled(true);
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
 
     @Override

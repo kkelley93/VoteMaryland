@@ -23,15 +23,17 @@
             android:name=".candidate_list"
             android:label="@string/title_activity_candidate_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Calendar_Of_Events" />
-        <activity android:name=".FindMyPollingPlace" />
-        <activity android:name=".FAQ" />
+        <activity
+            android:name=".Calendar_Of_Events"
+            android:label="@string/title_activity_calender__of__events" />
+        <activity
+            android:name=".FindMyPollingPlace"
+            android:label="@string/title_activity_polling_place" />
+        <activity
+            android:name=".FAQ"
+            android:label="@string/title_activity_faq" />
         <activity android:name=".EventDetail" />
         <activity android:name=".CandidateDetail" />
-        <activity
-            android:name=".nav_drawer"
-            android:label="@string/title_activity_nav_drawer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

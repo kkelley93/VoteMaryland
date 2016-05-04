@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_faq);
 
         mDrawerList = (ListView)findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -34,45 +35,32 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
-    public void launchCalendar(View v){
-        Intent myIntent = new Intent(MainActivity.this, Calendar_Of_Events.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
-    public void launchEventDetail(View v){
-        Intent myIntent = new Intent(MainActivity.this, EventDetail.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
-    public void launchCandidateList(View v){
-        Intent myIntent = new Intent(MainActivity.this, candidate_list.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
-    public void launchCandidateDetail(View v){
-        Intent myIntent = new Intent(MainActivity.this, CandidateDetail.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
-    public void launchFAQ(View v){
-        Intent myIntent = new Intent(MainActivity.this, FAQ.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
-    public void launchFindPlace(View v){
-        Intent myIntent = new Intent(MainActivity.this, FindMyPollingPlace.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
-    public void launchRegistration(View v){
-        Intent myIntent = new Intent(MainActivity.this, registration_webview.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
     private void addDrawerItems() {
-        String[] osArray = {"Candidate List", "Calendar of Events", "FAQ", "FindMyPollingPlace", "Registration"};
+        String[] osArray = getResources().getStringArray(R.array.activities_array);
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    Intent myIntent = new Intent(MainActivity.this, candidate_list.class);
+                    MainActivity.this.startActivity(myIntent);
+                } else if (position == 1) {
+                    Intent myIntent = new Intent(MainActivity.this, Calendar_Of_Events.class);
+                    MainActivity.this.startActivity(myIntent);
+                } else if (position == 2) {
+                    Intent myIntent = new Intent(MainActivity.this, FindMyPollingPlace.class);
+                    MainActivity.this.startActivity(myIntent);
+                } else if (position == 3) {
+                    Intent myIntent = new Intent(MainActivity.this, registration_webview.class);
+                    MainActivity.this.startActivity(myIntent);
+                } else {
+                    Intent myIntent = new Intent(MainActivity.this, FAQ.class);
+                    MainActivity.this.startActivity(myIntent);
+                }
+            }
+        });
     }
 
     private void setupDrawer() {
@@ -81,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                getSupportActionBar().setTitle("Navigation!");
+                getSupportActionBar().setTitle("Main Menu");
                 invalidateOptionsMenu();
             }
 
@@ -94,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         mDrawerToggle.setDrawerIndicatorEnabled(true);
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
 
     @Override

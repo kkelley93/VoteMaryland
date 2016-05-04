@@ -1,5 +1,6 @@
 package xyz.kylekelley.votemaryland;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,8 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class registration_webview extends AppCompatActivity {
     private ListView mDrawerList;
@@ -39,9 +42,30 @@ public class registration_webview extends AppCompatActivity {
     }
 
     private void addDrawerItems() {
-        String[] osArray = {"Candidate List", "Calendar of Events", "FAQ", "FindMyPollingPlace", "Registration"};
+        String[] osArray = getResources().getStringArray(R.array.activities_array);
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    Intent myIntent = new Intent(registration_webview.this, candidate_list.class);
+                    registration_webview.this.startActivity(myIntent);
+                } else if (position == 1) {
+                    Intent myIntent = new Intent(registration_webview.this, Calendar_Of_Events.class);
+                    registration_webview.this.startActivity(myIntent);
+                } else if (position == 2) {
+                    Intent myIntent = new Intent(registration_webview.this, FindMyPollingPlace.class);
+                    registration_webview.this.startActivity(myIntent);
+                } else if (position == 3) {
+                    Toast.makeText(registration_webview.this, "Already on page", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent myIntent = new Intent(registration_webview.this, FAQ.class);
+                    registration_webview.this.startActivity(myIntent);
+                }
+            }
+        });
     }
 
     private void setupDrawer() {
@@ -50,7 +74,7 @@ public class registration_webview extends AppCompatActivity {
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                getSupportActionBar().setTitle("Navigation!");
+                getSupportActionBar().setTitle("Main Menu");
                 invalidateOptionsMenu();
             }
 
@@ -63,7 +87,7 @@ public class registration_webview extends AppCompatActivity {
         };
 
         mDrawerToggle.setDrawerIndicatorEnabled(true);
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
 
     @Override
