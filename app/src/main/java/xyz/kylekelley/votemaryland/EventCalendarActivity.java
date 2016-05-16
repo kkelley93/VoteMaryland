@@ -131,7 +131,7 @@ public class EventCalendarActivity extends AppCompatActivity {
         databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         listView.setAdapter(cAdapter);
-//        this.call(current_date);
+        this.call(current_date);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

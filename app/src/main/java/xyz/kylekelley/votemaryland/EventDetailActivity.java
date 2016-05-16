@@ -42,7 +42,7 @@ public class EventDetailActivity extends AppCompatActivity {
         dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
         String QNAME = EventCalendarActivity.a;
         eventObjectsPlaceholder = new ArrayList<CalObj>();
-        cAdapter = new CalAdapter(this, R.layout.cal_list_row, eventObjectsPlaceholder);
+        cAdapter = new CalAdapter(this, R.layout.cal_detail_list_row, eventObjectsPlaceholder);
         listView = (ListView) findViewById(R.id.map_event);
         databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
@@ -70,7 +70,7 @@ public class EventDetailActivity extends AppCompatActivity {
                 eventStartTime = one.get(3);
                 eventEndTime = one.get(4);
             }
-            cAdapter.add(new CalObj("car",eventAddress));
+            cAdapter.add(new CalObj("dir",eventAddress));
 
         cAdapter.add(new CalObj("time",eventDate + "\n" + eventStartTime + "-" +
                 eventEndTime));
