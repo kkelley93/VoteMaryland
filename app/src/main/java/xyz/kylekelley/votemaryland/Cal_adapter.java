@@ -50,10 +50,27 @@ public class Cal_adapter extends ArrayAdapter<cal_obj>{
                 Drawable d = getContext().getResources().getDrawable(R.mipmap.pod);
 
                 IV.setImageDrawable(d);
-            } else {
+            } else if(image.equals("vote".trim())) {
                 Drawable d = getContext().getResources().getDrawable(R.mipmap.vote);
                 IV.setImageDrawable(d);
+            }else if(image.equals("car".trim())) {
+                Drawable d = getContext().getResources().getDrawable(R.mipmap.car);
+                IV.setImageDrawable(d);
+            }else if(image.equals("dir".trim())) {
+                Drawable d = getContext().getResources().getDrawable(R.mipmap.dir);
+                IV.setImageDrawable(d);
+            }else if(image.equals("fav".trim())) {
+                Drawable d = getContext().getResources().getDrawable(R.mipmap.fav);
+                IV.setImageDrawable(d);
+            }else if(image.equals("time".trim())) {
+                Drawable d = getContext().getResources().getDrawable(R.mipmap.time);
+                IV.setImageDrawable(d);
+            }else{
+                Drawable d = getContext().getResources().getDrawable(R.mipmap.vote);
+                IV.setImageDrawable(d);
+
             }
+
         }
         return item;
     }

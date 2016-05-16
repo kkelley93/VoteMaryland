@@ -55,8 +55,16 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text = "fdksalfjkladsjfkljdsklfjadsk;ljfadskjfkd"/>
+                android:layout_height="35dp"
+                android:text = "@string/event_name"
+                android:id="@+id/e_name" />
+            <ListView
+                android:layout_below="@id/e_name"
+                android:id="@+id/eventList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ListView>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
     <android.support.design.widget.FloatingActionButton
@@ -64,8 +72,9 @@
         android:layout_width="wrap_content"
         app:layout_anchor="@id/collapsing_toolbar"
         app:layout_anchorGravity="bottom|right|end"
-        android:src="@mipmap/pod"
+        android:src="@mipmap/fav"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"/>
+
 
 </android.support.design.widget.CoordinatorLayout>

@@ -18,7 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 public class Calander_Of_Events extends AppCompatActivity {
     DateFormat dateFormat ;
-    Date temp ;
+    Date temp = null ;
     //ArrayList<EventObjects> eo; Placeholder below
     ArrayList<cal_obj> eventObjectsPlaceholder;
     Cal_adapter cAdapter;
@@ -29,9 +29,9 @@ public class Calander_Of_Events extends AppCompatActivity {
         dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calander__of__events);
-        CaldroidFragment caldroidFragment = new CaldroidFragment();
+        final CaldroidFragment caldroidFragment = new CaldroidFragment();
         Bundle args = new Bundle();
-        Calendar cal = Calendar.getInstance();
+        final Calendar cal = Calendar.getInstance();
         args.putInt(CaldroidFragment.MONTH, cal.get(Calendar.MONTH) + 1);
         args.putInt(CaldroidFragment.YEAR, cal.get(Calendar.YEAR));
         caldroidFragment.setArguments(args);
@@ -47,17 +47,23 @@ public class Calander_Of_Events extends AppCompatActivity {
                 cal_obj current = cAdapter.getItem(position);
                 Intent myIntent = new Intent(Calander_Of_Events.this, EventDetail.class);
                 Calander_Of_Events.this.startActivity(myIntent);
+
             }
         });
-        final ColorDrawable green = new ColorDrawable(Color.GREEN);
+
         final CaldroidListener listener = new CaldroidListener() {
             @Override
             public void onSelectDate(Date date, View view) {
-                setBackgroundDrawableForDate(green, date);
-                view.invalidate();
+                if(temp != null) {
+                    caldroidFragment.clearTextColorForDate(temp);
+                }
+                caldroidFragment.setTextColorForDate(R.color.RED, date);
+                caldroidFragment.refreshView();
+
                 cAdapter.clear();
                // Toast.makeText(getApplicationContext(),  dateFormat.format(date),
                  //       Toast.LENGTH_SHORT).show();
+                temp = date;
                 ArrayList<String> one = null;
                 //ArrayList<String> two = null ;
                 String a = "";
@@ -71,8 +77,6 @@ public class Calander_Of_Events extends AppCompatActivity {
                     if (one != null) {
                         b = one.get(i);
                         a = one.get(i+1);
-//                        h = h+1;
-//                        j = j+1;
 
                     }
                         cAdapter.add(new cal_obj(a, b));

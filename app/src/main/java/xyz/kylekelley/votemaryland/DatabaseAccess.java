@@ -88,16 +88,21 @@ public class DatabaseAccess {
         }
         return name;
     }
-   /* public ArrayList<String> getCalImage(String date ) {
-        ArrayList<String> image = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT Type FROM Events WHERE Name = 'event1'", null);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            image.add(cursor.getString(1));
-            cursor.moveToNext();
+    public ArrayList<String> getCalEvent(String name ) {
+        ArrayList<String> name_date_address_start_end = new ArrayList<>();
+        Cursor cursor = null;
+        String Query = "SELECT Name,DATE,Address,Start_Time,End_Time FROM Events WHERE Name = 'event2'" ;
+        cursor = database.rawQuery(Query, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                name_date_address_start_end.add(cursor.getString(0).trim());
+                name_date_address_start_end.add(cursor.getString(1).trim());
+                name_date_address_start_end.add(cursor.getString(2).trim());
+                name_date_address_start_end.add(cursor.getString(3).trim());
+                name_date_address_start_end.add(cursor.getString(4).trim());
+            } while (cursor.moveToNext());
+            cursor.close();
         }
-        cursor.close();
-        return image;
+        return name_date_address_start_end;
     }
-*/
 }
