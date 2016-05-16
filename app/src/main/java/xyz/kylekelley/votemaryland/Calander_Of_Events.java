@@ -22,6 +22,7 @@ public class Calander_Of_Events extends AppCompatActivity {
     //ArrayList<EventObjects> eo; Placeholder below
     ArrayList<cal_obj> eventObjectsPlaceholder;
     Cal_adapter cAdapter;
+    ArrayList<String> one = null;
     ListView listView;
     DatabaseAccess databaseAccess = null;
     @Override
@@ -44,10 +45,11 @@ public class Calander_Of_Events extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                cal_obj current = cAdapter.getItem(position);
-                Intent myIntent = new Intent(Calander_Of_Events.this, EventDetail.class);
-                Calander_Of_Events.this.startActivity(myIntent);
-
+                if (one != null) {
+                    cal_obj current = cAdapter.getItem(position);
+                    Intent myIntent = new Intent(Calander_Of_Events.this, EventDetail.class);
+                    Calander_Of_Events.this.startActivity(myIntent);
+                }
             }
         });
 
@@ -59,31 +61,33 @@ public class Calander_Of_Events extends AppCompatActivity {
                 }
                 caldroidFragment.setTextColorForDate(R.color.RED, date);
                 caldroidFragment.refreshView();
-
+                if(one != null) {
+                    one.clear();
+                }
                 cAdapter.clear();
                // Toast.makeText(getApplicationContext(),  dateFormat.format(date),
                  //       Toast.LENGTH_SHORT).show();
                 temp = date;
-                ArrayList<String> one = null;
+
                 //ArrayList<String> two = null ;
                 String a = "";
                 String b = "";
                 one = databaseAccess.getCalName(dateFormat.format(date));
                 //two = databaseAccess.getCalImage(dateFormat.format(date));
                 Toast.makeText(getApplicationContext(), Integer.toString(one.size()), Toast.LENGTH_SHORT).show();
-//                int j = 1;
-//                int h = 0;
+                if (one != null) {
                 for(int i = 0; i < one.size(); i+=2) {
-                    if (one != null) {
                         b = one.get(i);
-                        a = one.get(i+1);
-
-                    }
+                        a = one.get(i + 1);
                         cAdapter.add(new cal_obj(a, b));
-//                    }
+                    }
+                }
+                else{
+                    cAdapter.add(new cal_obj("NONE","Sorry No Events For This Day"));
                 }
             }
             public void setBackgroundDrawableForDate(Drawable drawable, Date date){
+
             }
             @Override
             public void onChangeMonth(int month, int year) {

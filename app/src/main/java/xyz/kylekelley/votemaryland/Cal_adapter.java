@@ -65,7 +65,9 @@ public class Cal_adapter extends ArrayAdapter<cal_obj>{
             }else if(image.equals("time".trim())) {
                 Drawable d = getContext().getResources().getDrawable(R.mipmap.time);
                 IV.setImageDrawable(d);
-            }else{
+            }else if(image.equals("NONE".trim())) {
+            }
+            else{
                 Drawable d = getContext().getResources().getDrawable(R.mipmap.vote);
                 IV.setImageDrawable(d);
 
