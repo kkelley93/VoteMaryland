@@ -5,7 +5,6 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class EventDetail extends AppCompatActivity {
+public class EventDetailActivity extends AppCompatActivity {
 
    public String eventName = "";
     public String eventAddress = "";
@@ -28,8 +27,8 @@ public class EventDetail extends AppCompatActivity {
     public String eventDate = "";
     DateFormat dateFormat ;
     Date temp = null ;
-    ArrayList<cal_obj> eventObjectsPlaceholder;
-    Cal_adapter cAdapter;
+    ArrayList<CalObj> eventObjectsPlaceholder;
+    CalAdapter cAdapter;
     ArrayList<String> one = null;
     ListView listView;
     Date current_date  = new Date();
@@ -41,9 +40,9 @@ public class EventDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
         dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
-        String QNAME = Calander_Of_Events.a;
-        eventObjectsPlaceholder = new ArrayList<cal_obj>();
-        cAdapter = new Cal_adapter(this, R.layout.cal_list_row, eventObjectsPlaceholder);
+        String QNAME = EventCalendarActivity.a;
+        eventObjectsPlaceholder = new ArrayList<CalObj>();
+        cAdapter = new CalAdapter(this, R.layout.cal_list_row, eventObjectsPlaceholder);
         listView = (ListView) findViewById(R.id.map_event);
         databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
@@ -51,10 +50,10 @@ public class EventDetail extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    cal_obj current = cAdapter.getItem(position);
+                    CalObj current = cAdapter.getItem(position);
                     if(current.get_image() == "car".trim()) {
-                        Intent myIntent = new Intent(EventDetail.this, MainActivity.class);
-                        EventDetail.this.startActivity(myIntent);
+                        Intent myIntent = new Intent(EventDetailActivity.this, MainActivity.class);
+                        EventDetailActivity.this.startActivity(myIntent);
                     }
             }
         });
@@ -71,9 +70,9 @@ public class EventDetail extends AppCompatActivity {
                 eventStartTime = one.get(3);
                 eventEndTime = one.get(4);
             }
-            cAdapter.add(new cal_obj("car",eventAddress));
+            cAdapter.add(new CalObj("car",eventAddress));
 
-        cAdapter.add(new cal_obj("time",eventDate + "\n" + eventStartTime + "-" +
+        cAdapter.add(new CalObj("time",eventDate + "\n" + eventStartTime + "-" +
                 eventEndTime));
         Toast.makeText(getApplicationContext(), Integer.toString(cAdapter.getCount()), Toast.LENGTH_SHORT).show();
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

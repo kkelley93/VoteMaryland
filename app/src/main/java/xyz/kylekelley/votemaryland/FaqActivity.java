@@ -3,11 +3,11 @@ package xyz.kylekelley.votemaryland;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class fav_page extends AppCompatActivity {
+public class FaqActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fav_page);
+        setContentView(R.layout.activity_faq);
     }
 }

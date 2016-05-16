@@ -10,8 +10,6 @@ import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 
@@ -50,19 +48,19 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = null;
                             switch ((int) drawerItem.getIdentifier()) {
                                 case 1:
-                                    intent = new Intent(MainActivity.this, Calander_Of_Events.class);
+                                    intent = new Intent(MainActivity.this, EventCalendarActivity.class);
                                     break;
                                 case 2:
-                                    intent = new Intent(MainActivity.this, candidate_list.class);
+                                    intent = new Intent(MainActivity.this, CandidateListActivity.class);
                                     break;
                                 case 3:
-                                    intent = new Intent(MainActivity.this, FindMyPollingPlace.class);
+                                    intent = new Intent(MainActivity.this, PollingPlaceActivity.class);
                                     break;
                                 case 4:
-                                    intent = new Intent(MainActivity.this, Calander_Of_Events.class);
+                                    intent = new Intent(MainActivity.this, EventCalendarActivity.class);
                                     break;
                                 case 5:
-                                    intent = new Intent(MainActivity.this, FAQ.class);
+                                    intent = new Intent(MainActivity.this, FaqActivity.class);
                                     break;
                             }
 
@@ -95,37 +93,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchCalendar(View v){
-        Intent myIntent = new Intent(MainActivity.this, Calander_Of_Events.class);
+        Intent myIntent = new Intent(MainActivity.this, EventCalendarActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 
     public void launchEventDetail(View v){
-        Intent myIntent = new Intent(MainActivity.this, EventDetail.class);
+        Intent myIntent = new Intent(MainActivity.this, EventDetailActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 
     public void launchCandidateList(View v){
-        Intent myIntent = new Intent(MainActivity.this, candidate_list.class);
+        Intent myIntent = new Intent(MainActivity.this, CandidateListActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 
     public void launchCandidateDetail(View v){
-        Intent myIntent = new Intent(MainActivity.this, CandidateDetail.class);
+        Intent myIntent = new Intent(MainActivity.this, CandidateDetailActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 
     public void launchFAQ(View v){
-        Intent myIntent = new Intent(MainActivity.this, FAQ.class);
+        Intent myIntent = new Intent(MainActivity.this, FaqActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 
     public void launchFindPlace(View v){
-        Intent myIntent = new Intent(MainActivity.this, FindMyPollingPlace.class);
+        Intent myIntent = new Intent(MainActivity.this, PollingPlaceActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 
     public void launchRegistration(View v){
-        Intent myIntent = new Intent(MainActivity.this, registration_webview.class);
+        Intent myIntent = new Intent(MainActivity.this, RegistrationWebViewActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 

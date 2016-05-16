@@ -16,28 +16,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".registration_webview"
+            android:name=".RegistrationWebViewActivity"
             android:label="@string/title_activity_registration_webview"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".candidate_list"
+            android:name=".CandidateListActivity"
             android:label="@string/title_activity_candidate_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Calander_Of_Events"
+        <activity android:name=".EventCalendarActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
-        <activity android:name=".FindMyPollingPlace" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".FAQ" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".EventDetail"
+        <activity android:name=".PollingPlaceActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".FaqActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".EventDetailActivity"
             android:theme = "@style/AppTheme.NoActionBar"
-            android:parentActivityName=".Calander_Of_Events">
+            android:parentActivityName=".EventCalendarActivity">
 
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Calander_Of_Events"/>
+            android:value=".EventCalendarActivity"/>
         </activity>
 
-        <activity android:name=".CandidateDetail" android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".fav_page"></activity>
+        <activity android:name=".CandidateDetailActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".FavoritesActivity"></activity>
     </application>
 
 </manifest>

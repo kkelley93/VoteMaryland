@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
-public class CandidateDetail extends AppCompatActivity {
+public class CandidateDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

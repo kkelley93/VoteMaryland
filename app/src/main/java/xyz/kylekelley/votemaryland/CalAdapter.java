@@ -14,15 +14,15 @@ import java.util.ArrayList;
 /**
  * Created by TJ on 4/19/2016.
  */
-public class Cal_adapter extends ArrayAdapter<cal_obj>{
-    ArrayList<cal_obj> data =null;
+public class CalAdapter extends ArrayAdapter<CalObj>{
+    ArrayList<CalObj> data =null;
     int layoutID;
     Context con;
 
 
 
 
-    public Cal_adapter(Context con, int layoutResourceID, ArrayList<cal_obj> data){
+    public CalAdapter(Context con, int layoutResourceID, ArrayList<CalObj> data){
         super(con, layoutResourceID, data);
         this.con = con;
         this.layoutID = layoutResourceID;

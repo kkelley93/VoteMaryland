@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class DatabaseAccess {
@@ -17,7 +16,7 @@ public class DatabaseAccess {
     private SQLiteDatabase database;
     private static DatabaseAccess instance;
 
-    ArrayList<cal_obj> eventObjectsPlaceholder = new ArrayList<cal_obj>();
+    ArrayList<CalObj> eventObjectsPlaceholder = new ArrayList<CalObj>();
 
 
     /**

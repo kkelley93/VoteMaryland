@@ -1,14 +1,10 @@
 package xyz.kylekelley.votemaryland;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
@@ -16,19 +12,15 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
-import java.util.List;
+public class PollingPlaceActivity extends AppCompatActivity {
 
-public class candidate_list extends AppCompatActivity {
-    private ListView listView;
-    
+
     private Drawer result = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_candidate_list);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_polling_place);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,24 +47,24 @@ public class candidate_list extends AppCompatActivity {
                             Intent intent = null;
                             switch ((int) drawerItem.getIdentifier()) {
                                 case 1:
-                                    intent = new Intent(candidate_list.this, Calander_Of_Events.class);
+                                    intent = new Intent(PollingPlaceActivity.this, EventCalendarActivity.class);
                                     break;
                                 case 2:
-                                    intent = new Intent(candidate_list.this, candidate_list.class);
+                                    intent = new Intent(PollingPlaceActivity.this, CandidateListActivity.class);
                                     break;
                                 case 3:
-                                    intent = new Intent(candidate_list.this, FindMyPollingPlace.class);
+                                    intent = new Intent(PollingPlaceActivity.this, PollingPlaceActivity.class);
                                     break;
                                 case 4:
-                                    intent = new Intent(candidate_list.this, Calander_Of_Events.class);
+                                    intent = new Intent(PollingPlaceActivity.this, EventCalendarActivity.class);
                                     break;
                                 case 5:
-                                    intent = new Intent(candidate_list.this, FAQ.class);
+                                    intent = new Intent(PollingPlaceActivity.this, FaqActivity.class);
                                     break;
                             }
 
                             if (intent != null) {
-                                candidate_list.this.startActivity(intent);
+                                PollingPlaceActivity.this.startActivity(intent);
                             }
                         }
 
@@ -81,19 +73,6 @@ public class candidate_list extends AppCompatActivity {
                 })
                 .withSavedInstance(savedInstanceState)
                 .build();
-        
-        
-        //Opens connection to MD_Candidates.db, runs getNames() function in DatabaseAccess class
-        //displays names of candidates in a generic ListView.
-        this.listView = (ListView) findViewById(R.id.listView);
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-        List<String> names = databaseAccess.getNames();
-        databaseAccess.close();
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
-        this.listView.setAdapter(adapter);
-
     }
 
 
@@ -112,6 +91,4 @@ public class candidate_list extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
-
 }

@@ -6,20 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class registration_webview extends AppCompatActivity {
+public class RegistrationWebViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration_webview);
+        setContentView(R.layout.activity_registration_web_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
     }
 
     public void launchExternalWebview(View v){
-        Intent myIntent = new Intent(registration_webview.this, external_webview.class);
-        registration_webview.this.startActivity(myIntent);
+        Intent myIntent = new Intent(RegistrationWebViewActivity.this, ExternalWebViewActivity.class);
+        RegistrationWebViewActivity.this.startActivity(myIntent);
     }
 
 }

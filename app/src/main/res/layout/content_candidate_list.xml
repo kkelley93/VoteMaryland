@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="xyz.kylekelley.votemaryland.candidate_list"
+    tools:context=".CandidateListActivity"
     tools:showIn="@layout/activity_candidate_list">
 
 </RelativeLayout>
