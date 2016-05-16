@@ -83,7 +83,6 @@ public class DatabaseAccess {
             do {
                 name.add(cursor.getString(0).trim());
                 name.add(cursor.getString(1).trim());
-                cursor.moveToNext();
             } while (cursor.moveToNext());
             cursor.close();
         }

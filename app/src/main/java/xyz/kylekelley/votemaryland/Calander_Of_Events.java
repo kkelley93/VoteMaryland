@@ -1,5 +1,7 @@
 package xyz.kylekelley.votemaryland;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -47,10 +49,12 @@ public class Calander_Of_Events extends AppCompatActivity {
                 Calander_Of_Events.this.startActivity(myIntent);
             }
         });
+        final ColorDrawable green = new ColorDrawable(Color.GREEN);
         final CaldroidListener listener = new CaldroidListener() {
             @Override
             public void onSelectDate(Date date, View view) {
-
+                setBackgroundDrawableForDate(green, date);
+                view.invalidate();
                 cAdapter.clear();
                // Toast.makeText(getApplicationContext(),  dateFormat.format(date),
                  //       Toast.LENGTH_SHORT).show();
@@ -60,13 +64,19 @@ public class Calander_Of_Events extends AppCompatActivity {
                 String b = "";
                 one = databaseAccess.getCalName(dateFormat.format(date));
                 //two = databaseAccess.getCalImage(dateFormat.format(date));
-                if(one != null) {
+                Toast.makeText(getApplicationContext(), Integer.toString(one.size()), Toast.LENGTH_SHORT).show();
+//                int j = 1;
+//                int h = 0;
+                for(int i = 0; i < one.size(); i+=2) {
+                    if (one != null) {
+                        b = one.get(i);
+                        a = one.get(i+1);
+//                        h = h+1;
+//                        j = j+1;
 
-                     a = one.get(1);
-                     b = one.get(0);
-                }
-                if(a != "" && b !="") {
-                    cAdapter.add(new cal_obj(a, b));
+                    }
+                        cAdapter.add(new cal_obj(a, b));
+//                    }
                 }
             }
             public void setBackgroundDrawableForDate(Drawable drawable, Date date){
