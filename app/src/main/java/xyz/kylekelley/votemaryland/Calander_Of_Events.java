@@ -24,7 +24,33 @@ public class Calander_Of_Events extends AppCompatActivity {
     Cal_adapter cAdapter;
     ArrayList<String> one = null;
     ListView listView;
+    Date current_date  = new Date();
     DatabaseAccess databaseAccess = null;
+    public void call( Date date){
+        if(one != null) {
+            one.clear();
+        }
+        cAdapter.clear();
+        temp = date;
+        String a = "";
+        String b = "";
+        one = databaseAccess.getCalName(dateFormat.format(date));
+        //two = databaseAccess.getCalImage(dateFormat.format(date));
+        if (one != null) {
+            for(int i = 0; i < one.size(); i+=2) {
+                b = one.get(i);
+                a = one.get(i + 1);
+                cAdapter.add(new cal_obj(a, b));
+            }
+        }
+        if(cAdapter.isEmpty()){
+            one = null;
+            cAdapter.add(new cal_obj("NONE","Sorry No Events For This Day"));
+        }
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
@@ -39,9 +65,10 @@ public class Calander_Of_Events extends AppCompatActivity {
         eventObjectsPlaceholder = new ArrayList<cal_obj>();
         cAdapter = new Cal_adapter(this, R.layout.cal_list_row, eventObjectsPlaceholder);
         listView = (ListView) findViewById(R.id.eventList);
-         databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         listView.setAdapter(cAdapter);
+        this.call(current_date);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -53,7 +80,7 @@ public class Calander_Of_Events extends AppCompatActivity {
             }
         });
 
-        final CaldroidListener listener = new CaldroidListener() {
+         CaldroidListener listener = new CaldroidListener() {
             @Override
             public void onSelectDate(Date date, View view) {
                 if(temp != null) {
@@ -65,16 +92,11 @@ public class Calander_Of_Events extends AppCompatActivity {
                     one.clear();
                 }
                 cAdapter.clear();
-               // Toast.makeText(getApplicationContext(),  dateFormat.format(date),
-                 //       Toast.LENGTH_SHORT).show();
                 temp = date;
-
-                //ArrayList<String> two = null ;
                 String a = "";
                 String b = "";
                 one = databaseAccess.getCalName(dateFormat.format(date));
                 //two = databaseAccess.getCalImage(dateFormat.format(date));
-                Toast.makeText(getApplicationContext(), Integer.toString(one.size()), Toast.LENGTH_SHORT).show();
                 if (one != null) {
                 for(int i = 0; i < one.size(); i+=2) {
                         b = one.get(i);
@@ -82,7 +104,8 @@ public class Calander_Of_Events extends AppCompatActivity {
                         cAdapter.add(new cal_obj(a, b));
                     }
                 }
-                else{
+                if(cAdapter.isEmpty()){
+                    one = null;
                     cAdapter.add(new cal_obj("NONE","Sorry No Events For This Day"));
                 }
             }
