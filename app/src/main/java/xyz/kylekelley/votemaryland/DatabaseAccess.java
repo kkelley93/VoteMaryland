@@ -9,12 +9,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DatabaseAccess {
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase database;
     private static DatabaseAccess instance;
+
+    ArrayList<cal_obj> eventObjectsPlaceholder = new ArrayList<cal_obj>();
+
 
     /**
      * Private constructor to aboid object creation from outside classes.
@@ -64,10 +68,36 @@ public class DatabaseAccess {
         Cursor cursor = database.rawQuery("SELECT First, Last FROM CandidateList", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(0) + " "+ cursor.getString(1));
+            list.add(cursor.getString(0) + " " + cursor.getString(1));
             cursor.moveToNext();
         }
         cursor.close();
         return list;
     }
+    public ArrayList<String> getCalName(String date ) {
+        ArrayList<String> name = new ArrayList<>();
+        Cursor cursor = null;
+        String Query = "SELECT Name, Type FROM Events WHERE DATE ='"+date+"'" ;
+        cursor = database.rawQuery(Query, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                name.add(cursor.getString(0).trim());
+                name.add(cursor.getString(1).trim());
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return name;
+    }
+   /* public ArrayList<String> getCalImage(String date ) {
+        ArrayList<String> image = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT Type FROM Events WHERE Name = 'event1'", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            image.add(cursor.getString(1));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return image;
+    }
+*/
 }

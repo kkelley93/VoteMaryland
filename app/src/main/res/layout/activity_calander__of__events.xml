@@ -14,22 +14,25 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
-
-
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id = "@+id/LL"
+        android:layout_alignParentTop="true">
         <CalendarView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calendarView"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal">
 
-            <ListView
-                android:id="@+id/eventList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></ListView>
-
+        </CalendarView>
     </LinearLayout>
+
+    <ListView
+        android:layout_below="@id/LL"
+        android:id="@+id/eventList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </RelativeLayout>

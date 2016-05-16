@@ -32,8 +32,6 @@ public class candidate_list extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
         this.listView.setAdapter(adapter);
 
-
-
     }
 
 }
