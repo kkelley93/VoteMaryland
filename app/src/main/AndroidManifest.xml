@@ -8,36 +8,69 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.MAIN"
+                    />
+
+                <category
+                    android:name="android.intent.category.LAUNCHER"
+                    />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".RegistrationWebViewActivity"
             android:label="@string/title_activity_registration_webview"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+
         <activity
             android:name=".CandidateListActivity"
             android:label="@string/title_activity_candidate_list"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EventCalendarActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
-        <activity android:name=".PollingPlaceActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".FaqActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".EventDetailActivity"
-            android:theme = "@style/AppTheme.NoActionBar"
-            android:parentActivityName=".EventCalendarActivity">
 
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-            android:value=".EventCalendarActivity"/>
+        <activity
+            android:name=".EventCalendarActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+
+        <activity
+            android:name=".PollingPlaceActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+
+        <activity android:name=".FaqActivity" android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".EventDetailActivity"
+            android:theme = "@style/AppTheme.NoActionBar"
+            android:parentActivityName=".EventCalendarActivity"
+            >
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EventCalendarActivity"
+                />
+
         </activity>
 
-        <activity android:name=".CandidateDetailActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".FavoritesActivity"></activity>
+        <activity
+            android:name=".CandidateDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+
+        <activity
+            android:name=".FavoritesActivity"
+            />
+
     </application>
 
 </manifest>
