@@ -1,8 +1,9 @@
-apply plugin: 'com.android.application'
 
+apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "xyz.kylekelley.votemaryland"
@@ -25,4 +26,11 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+    compile 'com.roomorama:caldroid:3.0.1'
+    compile 'com.github.bumptech.glide:glide:3.6.0'
+    compile('com.mikepenz:materialdrawer:5.2.6@aar') {
+        transitive = true
+    }
+    compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
+    compile 'com.google.code.gson:gson:2.4'
 }
