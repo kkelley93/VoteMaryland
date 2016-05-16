@@ -28,18 +28,35 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/txtLabel"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Test"
-                android:textSize="16sp" />
+                android:layout_centerHorizontal="true"
+                android:id = "@+id/LL"
+                android:layout_alignParentTop="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/calendarView"
+                    android:orientation="vertical">
+                </LinearLayout>
+                <ListView
+                    android:layout_below="@id/LL"
+                    android:id="@+id/eventList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </ListView>
+            </LinearLayout>
+
         </FrameLayout>
     </FrameLayout>
 </RelativeLayout>
 
+
 <!--<?xml version="1.0" encoding="utf-8"?>-->
+
 <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
     <!--xmlns:tools="http://schemas.android.com/tools"-->
     <!--android:layout_width="match_parent"-->
@@ -48,6 +65,31 @@
     <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
     <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
     <!--android:paddingTop="@dimen/activity_vertical_margin"-->
-    <!--tools:context=".FaqActivity">-->
+    <!--tools:context=".EventCalendarActivity"-->
+    <!--android:id="@+id/i">-->
+
+    <!--<LinearLayout-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:id = "@+id/LL"-->
+        <!--android:layout_alignParentTop="true">-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/calendarView"-->
+            <!--android:orientation="vertical">-->
+        <!--</LinearLayout>-->
+        <!--<ListView-->
+            <!--android:layout_below="@id/LL"-->
+            <!--android:id="@+id/eventList"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+        <!--</ListView>-->
+    <!--</LinearLayout>-->
+
+
 
 <!--</RelativeLayout>-->

@@ -1,27 +1,32 @@
 package xyz.kylekelley.votemaryland;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-
+public class CandidateListActivity extends AppCompatActivity {
+    private ListView listView;
+    
     private Drawer result = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_candidate_list);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                         new PrimaryDrawerItem().withName(R.string.drawer_item_favorites).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(4),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_faq).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(5)
                 )
+                .withSelectedItem(2)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -48,35 +54,47 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = null;
                             switch ((int) drawerItem.getIdentifier()) {
                                 case 1:
-                                    intent = new Intent(MainActivity.this, EventCalendarActivity.class);
+                                    intent = new Intent(CandidateListActivity.this, EventCalendarActivity.class);
                                     break;
                                 case 2:
-                                    intent = new Intent(MainActivity.this, CandidateListActivity.class);
+                                    intent = new Intent(CandidateListActivity.this, CandidateListActivity.class);
                                     break;
                                 case 3:
-                                    intent = new Intent(MainActivity.this, PollingPlaceActivity.class);
+                                    intent = new Intent(CandidateListActivity.this, PollingPlaceActivity.class);
                                     break;
                                 case 4:
-                                    intent = new Intent(MainActivity.this, EventCalendarActivity.class);
+                                    intent = new Intent(CandidateListActivity.this, EventCalendarActivity.class);
                                     break;
                                 case 5:
-                                    intent = new Intent(MainActivity.this, FaqActivity.class);
+                                    intent = new Intent(CandidateListActivity.this, FaqActivity.class);
                                     break;
                             }
 
                             if (intent != null) {
-                                MainActivity.this.startActivity(intent);
+                                CandidateListActivity.this.startActivity(intent);
                             }
                         }
 
                         return false;
                     }
                 })
-                .withSavedInstance(savedInstanceState)
+//                .withSavedInstance(savedInstanceState)
                 .build();
+        
+        
+        //Opens connection to MD_Candidates.db, runs getNames() function in DatabaseAccess class
+        //displays names of candidates in a generic ListView.
+        this.listView = (ListView) findViewById(R.id.listView);
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        List<String> names = databaseAccess.getNames();
+        databaseAccess.close();
 
-//        result.setSelection(1);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
+        this.listView.setAdapter(adapter);
+
     }
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -93,42 +111,6 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
-    public void launchCalendar(View v){
-        Intent myIntent = new Intent(MainActivity.this, EventCalendarActivity.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
-    public void launchEventDetail(View v){
-        Intent myIntent = new Intent(MainActivity.this, EventDetailActivity.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
-    public void launchCandidateList(View v){
-        Intent myIntent = new Intent(MainActivity.this, CandidateListActivity.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
-    public void launchCandidateDetail(View v){
-        Intent myIntent = new Intent(MainActivity.this, CandidateDetailActivity.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
-    public void launchFAQ(View v){
-        Intent myIntent = new Intent(MainActivity.this, FaqActivity.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
-    public void launchFindPlace(View v){
-        Intent myIntent = new Intent(MainActivity.this, PollingPlaceActivity.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
-    public void launchRegistration(View v){
-        Intent myIntent = new Intent(MainActivity.this, RegistrationWebViewActivity.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
 
 
 }

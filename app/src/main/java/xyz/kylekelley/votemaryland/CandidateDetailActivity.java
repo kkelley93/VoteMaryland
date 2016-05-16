@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
-public class CandidateDetail extends AppCompatActivity {
+public class CandidateDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,6 @@ public class CandidateDetail extends AppCompatActivity {
     */
     private void loadBackdrop() {
         final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-        Glide.with(this).load(R.drawable.berniesanders).centerCrop().into(imageView);
+        Glide.with(this).load(R.mipmap.berniesanders).centerCrop().into(imageView);
     }
 }

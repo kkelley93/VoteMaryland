@@ -39,6 +39,7 @@
     </FrameLayout>
 </RelativeLayout>
 
+
 <!--<?xml version="1.0" encoding="utf-8"?>-->
 <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
     <!--xmlns:tools="http://schemas.android.com/tools"-->
@@ -48,6 +49,6 @@
     <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
     <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
     <!--android:paddingTop="@dimen/activity_vertical_margin"-->
-    <!--tools:context=".FaqActivity">-->
+    <!--tools:context=".FavoritesActivity">-->
 
 <!--</RelativeLayout>-->

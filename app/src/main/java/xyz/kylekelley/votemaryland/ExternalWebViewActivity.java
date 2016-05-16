@@ -9,12 +9,12 @@ import android.webkit.WebViewClient;
 /**
  * Created by Kimberly on 4/18/2016.
  */
-public class external_webview extends AppCompatActivity{
+public class ExternalWebViewActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_external_webview);
+        setContentView(R.layout.activity_external_web_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
