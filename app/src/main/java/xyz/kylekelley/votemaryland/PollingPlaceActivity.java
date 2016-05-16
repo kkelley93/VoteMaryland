@@ -39,6 +39,7 @@ public class PollingPlaceActivity extends AppCompatActivity {
                         new PrimaryDrawerItem().withName(R.string.drawer_item_favorites).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(4),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_faq).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(5)
                 )
+                .withSelectedItem(3)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -71,7 +72,7 @@ public class PollingPlaceActivity extends AppCompatActivity {
                         return false;
                     }
                 })
-                .withSavedInstance(savedInstanceState)
+//                .withSavedInstance(savedInstanceState)
                 .build();
     }
 

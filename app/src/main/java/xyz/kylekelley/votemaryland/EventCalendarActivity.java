@@ -69,6 +69,7 @@ public class EventCalendarActivity extends AppCompatActivity {
         result = new DrawerBuilder(this)
                 //this layout have to contain child layouts
                 .withRootView(R.id.drawer_container)
+//                .withActivity(this)
                 .withToolbar(toolbar)
                 .withDisplayBelowStatusBar(false)
                 .withActionBarDrawerToggleAnimated(true)
@@ -79,6 +80,7 @@ public class EventCalendarActivity extends AppCompatActivity {
                         new PrimaryDrawerItem().withName(R.string.drawer_item_favorites).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(4),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_faq).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(5)
                 )
+                .withSelectedItem(1)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -111,10 +113,10 @@ public class EventCalendarActivity extends AppCompatActivity {
                         return false;
                     }
                 })
-                .withSavedInstance(savedInstanceState)
+//                .withSavedInstance(savedInstanceState)
                 .build();
 
-        result.setSelection(1);
+//        result.setSelection(1);
 
         dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
         final CaldroidFragment caldroidFragment = new CaldroidFragment();
