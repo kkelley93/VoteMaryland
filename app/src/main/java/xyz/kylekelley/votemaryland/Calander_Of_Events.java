@@ -19,13 +19,13 @@ import java.util.Date;
 public class Calander_Of_Events extends AppCompatActivity {
     DateFormat dateFormat ;
     Date temp = null ;
-    //ArrayList<EventObjects> eo; Placeholder below
     ArrayList<cal_obj> eventObjectsPlaceholder;
     Cal_adapter cAdapter;
     ArrayList<String> one = null;
     ListView listView;
     Date current_date  = new Date();
     DatabaseAccess databaseAccess = null;
+    static String a = "";
     public void call( Date date){
         if(one != null) {
             one.clear();
@@ -74,6 +74,7 @@ public class Calander_Of_Events extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (one != null) {
                     cal_obj current = cAdapter.getItem(position);
+                    a = current.get_title();
                     Intent myIntent = new Intent(Calander_Of_Events.this, EventDetail.class);
                     Calander_Of_Events.this.startActivity(myIntent);
                 }

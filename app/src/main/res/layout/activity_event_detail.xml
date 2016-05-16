@@ -60,9 +60,9 @@
                 android:id="@+id/e_name" />
             <ListView
                 android:layout_below="@id/e_name"
-                android:id="@+id/eventList"
+                android:id="@+id/map_event"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="255dp">
 
             </ListView>
         </LinearLayout>

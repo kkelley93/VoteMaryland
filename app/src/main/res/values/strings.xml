@@ -3,6 +3,6 @@
     <string name="title_activity_registration_webview">registration_webview</string>
     <string name="title_activity_candidate_list">candidate_list</string>
     <string name="title_activity_calender__of__events">Calender_Of_Events</string>
-    <string name ="test">test</string>
-    <string name ="event_name"> </string>
+    <string name="test">test</string>
+    <string name="event_name"> </string>
 </resources>

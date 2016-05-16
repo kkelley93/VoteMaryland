@@ -1,10 +1,13 @@
 package xyz.kylekelley.votemaryland;
 
+import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,17 +21,18 @@ import java.util.Date;
 
 public class EventDetail extends AppCompatActivity {
 
-   public String eventName = "EVENT NAME";
-    public String eventAddress = "127 EVENT asdjakdha ";
+   public String eventName = "";
+    public String eventAddress = "";
     public String eventStartTime = "";
     public String eventEndTime = "";
     public String eventDate = "";
     DateFormat dateFormat ;
     Date temp = null ;
-    //ArrayList<EventObjects> eo; Placeholder below
     ArrayList<cal_obj> eventObjectsPlaceholder;
     Cal_adapter cAdapter;
+    ArrayList<String> one = null;
     ListView listView;
+    Date current_date  = new Date();
     DatabaseAccess databaseAccess = null;
 
     @Override
@@ -36,20 +40,31 @@ public class EventDetail extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
-
+        dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
+        String QNAME = Calander_Of_Events.a;
         eventObjectsPlaceholder = new ArrayList<cal_obj>();
         cAdapter = new Cal_adapter(this, R.layout.cal_list_row, eventObjectsPlaceholder);
-        listView = (ListView) findViewById(R.id.eventList);
+        listView = (ListView) findViewById(R.id.map_event);
         databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         listView.setAdapter(cAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    cal_obj current = cAdapter.getItem(position);
+                    if(current.get_image() == "car".trim()) {
+                        Intent myIntent = new Intent(EventDetail.this, MainActivity.class);
+                        EventDetail.this.startActivity(myIntent);
+                    }
+            }
+        });
 
-        ArrayList<String> one = null;
-        one = databaseAccess.getCalEvent((eventName));
+        one = databaseAccess.getCalEvent((QNAME));
         Toast.makeText(getApplicationContext(), Integer.toString(one.size()), Toast.LENGTH_SHORT).show();
 
             if (one != null) {
                 //name_date_address_start_end
+
                 eventName = one.get(0);
                 eventDate = one.get(1);
                 eventAddress = one.get(2);
@@ -57,6 +72,10 @@ public class EventDetail extends AppCompatActivity {
                 eventEndTime = one.get(4);
             }
             cAdapter.add(new cal_obj("car",eventAddress));
+
+        cAdapter.add(new cal_obj("time",eventDate + "\n" + eventStartTime + "-" +
+                eventEndTime));
+        Toast.makeText(getApplicationContext(), Integer.toString(cAdapter.getCount()), Toast.LENGTH_SHORT).show();
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
