@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .withSavedInstance(savedInstanceState)
                 .build();
+        result.setSelection(1);
     }
 
     @Override
