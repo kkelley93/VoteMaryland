@@ -91,7 +91,7 @@ public class DatabaseAccess {
     public ArrayList<String> getCalEvent(String name ) {
         ArrayList<String> name_date_address_start_end = new ArrayList<>();
         Cursor cursor = null;
-        String Query = "SELECT Name,DATE,Address,Start_Time,End_Time FROM Events WHERE Name = 'event2'" ;
+        String Query = "SELECT Name,DATE,Address,Start_Time,End_Time FROM Events WHERE Name = '"+name+"'" ;
         cursor = database.rawQuery(Query, null);
         if (cursor != null && cursor.moveToFirst()) {
             do {
