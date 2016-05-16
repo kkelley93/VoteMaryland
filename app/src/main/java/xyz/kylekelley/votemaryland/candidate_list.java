@@ -10,17 +10,79 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+
 import java.util.List;
 
 public class candidate_list extends AppCompatActivity {
     private ListView listView;
+    
+    private Drawer result = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_candidate_list);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.app_name);
+
+        result = new DrawerBuilder(this)
+                //this layout have to contain child layouts
+                .withRootView(R.id.drawer_container)
+                .withToolbar(toolbar)
+                .withDisplayBelowStatusBar(false)
+                .withActionBarDrawerToggleAnimated(true)
+                .addDrawerItems(
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_calendar).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_candidates).withIcon(FontAwesome.Icon.faw_gamepad).withIdentifier(2),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_polling_places).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(3),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_favorites).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(4),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_faq).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(5)
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+
+                        if (drawerItem != null) {
+                            Intent intent = null;
+                            switch ((int) drawerItem.getIdentifier()) {
+                                case 1:
+                                    intent = new Intent(candidate_list.this, Calander_Of_Events.class);
+                                    break;
+                                case 2:
+                                    intent = new Intent(candidate_list.this, candidate_list.class);
+                                    break;
+                                case 3:
+                                    intent = new Intent(candidate_list.this, FindMyPollingPlace.class);
+                                    break;
+                                case 4:
+                                    intent = new Intent(candidate_list.this, Calander_Of_Events.class);
+                                    break;
+                                case 5:
+                                    intent = new Intent(candidate_list.this, FAQ.class);
+                                    break;
+                            }
+
+                            if (intent != null) {
+                                candidate_list.this.startActivity(intent);
+                            }
+                        }
+
+                        return false;
+                    }
+                })
+                .withSavedInstance(savedInstanceState)
+                .build();
+        
+        
         //Opens connection to MD_Candidates.db, runs getNames() function in DatabaseAccess class
         //displays names of candidates in a generic ListView.
         this.listView = (ListView) findViewById(R.id.listView);
@@ -33,5 +95,23 @@ public class candidate_list extends AppCompatActivity {
         this.listView.setAdapter(adapter);
 
     }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState = result.saveInstanceState(outState);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //handle the back press :D close the drawer first and if the drawer is closed close the activity
+        if (result != null && result.isDrawerOpen()) {
+            result.closeDrawer();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 
 }

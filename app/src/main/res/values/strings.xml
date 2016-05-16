@@ -4,4 +4,9 @@
     <string name="title_activity_candidate_list">candidate_list</string>
     <string name="title_activity_calender__of__events">Calender_Of_Events</string>
     <string name ="test">test</string>
+    <string name="drawer_item_calendar">Calendar</string>
+    <string name="drawer_item_candidates">Candidates</string>
+    <string name="drawer_item_polling_places">Polling Places</string>
+    <string name="drawer_item_favorites">Favorites</string>
+    <string name="drawer_item_faq">FAQ</string>
 </resources>
