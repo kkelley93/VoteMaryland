@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.app_name);
+        getSupportActionBar().getThemedContext();
 
         result = new DrawerBuilder(this)
                 //this layout have to contain child layouts
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 .withSavedInstance(savedInstanceState)
                 .build();
 
-//        result.setSelection(1);
+        result.setSelection(1);
     }
 
     @Override

@@ -64,7 +64,7 @@ public class EventCalendarActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.app_name);
+
 
         result = new DrawerBuilder(this)
                 //this layout have to contain child layouts

@@ -63,7 +63,6 @@
                 android:id="@+id/map_event"
                 android:layout_width="match_parent"
                 android:layout_height="255dp">
-
             </ListView>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
@@ -72,6 +71,7 @@
         android:layout_width="wrap_content"
         app:layout_anchor="@id/collapsing_toolbar"
         app:layout_anchorGravity="bottom|right|end"
+        android:onClick="onClickToFav"
         android:src="@mipmap/fav"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"/>

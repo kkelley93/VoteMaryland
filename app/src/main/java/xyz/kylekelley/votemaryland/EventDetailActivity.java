@@ -2,6 +2,7 @@ package xyz.kylekelley.votemaryland;
 
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -33,6 +34,7 @@ public class EventDetailActivity extends AppCompatActivity {
     ListView listView;
     Date current_date  = new Date();
     DatabaseAccess databaseAccess = null;
+    public FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,13 @@ public class EventDetailActivity extends AppCompatActivity {
    private void loadBackdrop() {
         final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
         Glide.with(this).load(R.mipmap.pod).centerCrop().into(imageView);
+    }
+    public void onClickToFav(View v){
+
+            Intent myIntent = new Intent(EventDetailActivity.this, FavoritesActivity.class);
+            startActivity(myIntent);
+        setContentView(R.layout.activity_favorites);
+
     }
 
 
