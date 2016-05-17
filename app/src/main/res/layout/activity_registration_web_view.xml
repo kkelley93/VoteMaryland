@@ -1,85 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:columnCount="1"
-    android:useDefaultMargins="true"
-    android:layout_gravity="center_horizontal">
+    android:gravity="center">
 
-
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:id="@+id/imageView"
-        android:src="@mipmap/mdflag"
-        android:layout_gravity="center_horizontal"/>
-    <CheckBox
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="At least 16 years old"
-        android:id="@+id/checkBox"
-        android:checked="false"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_height="75dip"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:textAlignment="center"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <CheckBox
+    <!-- the layout which will contain (host) the drawerLayout -->
+    <FrameLayout
+        android:id="@+id/drawer_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Maryland resident"
-        android:id="@+id/checkBox2"
-        android:checked="false"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Not under gurdanship for mental disability "
-        android:id="@+id/checkBox3"
-        android:checked="false" />
+        <!-- the layout which will be the content of the activity (which will be hosted inside the drawer (NOT the list of the drawer)) -->
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/lin_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Not convicted of buying or selling votes"
-        android:id="@+id/checkBox4"
-        android:checked="false" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Not been convicted for a felony"
-        android:id="@+id/checkBox5"
-        android:checked="false" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registration Application "
-        android:id="@+id/registrationapp"
-        android:onClick="launchExternalWebview"
-        android:layout_gravity="center_horizontal"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Already Registered"
-        android:id="@+id/alreadyregistered"
-        android:onClick="launchCalendar"
-        android:layout_gravity="center_horizontal"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notification Test"
-        android:id="@+id/notificationtest"
-        android:onClick="launchNotification"
-        android:layout_gravity="center_horizontal"/>
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="150dp"
+                android:id="@+id/imageView"
+                android:src="@mipmap/mdflag"
+                android:layout_gravity="center_horizontal"/>
 
 
 
-</GridLayout>
+            <CheckBox
+                android:layout_width="205dp"
+                android:layout_height="wrap_content"
+                android:text="Not been convicted for a felony"
+                android:id="@+id/checkBox5"
+                android:checked="false" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not convicted of buying or selling votes"
+                android:id="@+id/checkBox4"
+                android:checked="false"
+                android:layout_gravity="left|center_vertical" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not under gurdanship for mental disability "
+                android:id="@+id/checkBox3"
+                android:checked="false"
+                android:layout_gravity="left|top" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Maryland resident"
+                android:id="@+id/checkBox2"
+                android:checked="false"
+                android:layout_gravity="left|center_vertical" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="At least 16 years old"
+                android:id="@+id/checkBox"
+                android:checked="false"
+                android:layout_gravity="center" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Registration Application "
+                android:id="@+id/registrationapp"
+                android:onClick="launchExternalWebview"
+                android:layout_gravity="center_horizontal|bottom"
+                android:background="@color/primary"
+                android:textColor="@color/WHITE"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Already Registered"
+                android:id="@+id/alreadyregistered"
+                android:onClick="alreadyRegistered"
+                android:layout_gravity="center_horizontal|bottom"
+                android:background="@color/primary"
+                android:textColor="@color/WHITE"/>
+
+
+        </LinearLayout>
+        </FrameLayout>
+    </FrameLayout>
+</RelativeLayout>

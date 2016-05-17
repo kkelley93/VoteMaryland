@@ -1,6 +1,8 @@
 package xyz.kylekelley.votemaryland;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
 
 import java.util.ArrayList;
 
@@ -28,6 +36,7 @@ public class CalAdapter extends ArrayAdapter<CalObj>{
         this.layoutID = layoutResourceID;
         this.data = data;
     }
+    private Drawer result = null;
 
     @Override
     public View getView(int pos, View convertView, ViewGroup parent){
@@ -40,58 +49,87 @@ public class CalAdapter extends ArrayAdapter<CalObj>{
         String title = getItem(pos).get_title();
         String image = getItem(pos).get_image();
 
-
         ImageView IV = (ImageView) item.findViewById(R.id.eventImage);
         TextView textTitle = (TextView) item.findViewById(R.id.eventTitle);
         if(title != null) {
             textTitle.setText(title);
 
             if (image.equals("pod".trim())) {
-                Drawable d = getContext().getResources().getDrawable(R.mipmap.pod);
-
+                Drawable d = new IconicsDrawable(getContext())
+                        .icon(GoogleMaterial.Icon.gmd_settings_voice)
+                        .color(Color.RED)
+                        .sizeDp(10);
                 IV.setImageDrawable(d);
             } else if(image.equals("vote".trim())) {
-                Drawable d = getContext().getResources().getDrawable(R.mipmap.vote);
-                IV.setImageDrawable(d);
-            }else if(image.equals("car".trim())) {
-                Drawable d = getContext().getResources().getDrawable(R.mipmap.car);
+                Drawable d = new IconicsDrawable(getContext())
+                        .icon(GoogleMaterial.Icon.gmd_check_box)
+                        .color(Color.RED)
+                        .sizeDp(10);
                 IV.setImageDrawable(d);
             }else if(image.equals("dir".trim())) {
-                Drawable d = getContext().getResources().getDrawable(R.mipmap.dir);
+                Drawable d = new IconicsDrawable(getContext())
+                        .icon(GoogleMaterial.Icon.gmd_place)
+                        .color(Color.RED)
+                        .sizeDp(10);
                 IV.setImageDrawable(d);
             }else if(image.equals("fav".trim())) {
-                Drawable d = getContext().getResources().getDrawable(R.mipmap.fav);
+                Drawable d = new IconicsDrawable(getContext())
+                        .icon(GoogleMaterial.Icon.gmd_favorite)
+                        .color(Color.RED)
+                        .sizeDp(10);
                 IV.setImageDrawable(d);
             }else if(image.equals("time".trim())) {
-                Drawable d = getContext().getResources().getDrawable(R.mipmap.time);
+                Drawable d = new IconicsDrawable(getContext())
+                        .icon(GoogleMaterial.Icon.gmd_query_builder)
+                        .color(Color.RED)
+                        .sizeDp(10);
                 IV.setImageDrawable(d);
             }else if(image.equals("NONE".trim())) {
                 Drawable d = null;
                 IV.setImageDrawable(d);
             }else if(image.equals("rally".trim())) {
-                Drawable d = getContext().getResources().getDrawable(R.mipmap.rally);
+                Drawable d = new IconicsDrawable(getContext())
+                        .icon(GoogleMaterial.Icon.gmd_volume_up)
+                        .color(Color.RED)
+                        .sizeDp(10);
                 IV.setImageDrawable(d);
             }else if(image.equals("phone".trim())) {
-                Drawable d = getContext().getResources().getDrawable(R.mipmap.phone);
+                Drawable d = new IconicsDrawable(getContext())
+                        .icon(GoogleMaterial.Icon.gmd_phone)
+                        .color(Color.RED)
+                        .sizeDp(10);
                 IV.setImageDrawable(d);
             }else if(image.equals("march".trim())) {
-                Drawable d = getContext().getResources().getDrawable(R.mipmap.march);
+                Drawable d = new IconicsDrawable(getContext())
+                        .icon(GoogleMaterial.Icon.gmd_directions_run)
+                        .color(Color.RED)
+                        .sizeDp(10);
                 IV.setImageDrawable(d);
             }else if(image.equals("register".trim())) {
-                Drawable d = getContext().getResources().getDrawable(R.mipmap.register);
+                Drawable d = new IconicsDrawable(getContext())
+                        .icon(GoogleMaterial.Icon.gmd_assignment)
+                        .color(Color.RED)
+                        .sizeDp(10);
                 IV.setImageDrawable(d);
             }else if(image.equals("meetup".trim())) {
-                Drawable d = getContext().getResources().getDrawable(R.drawable.ic_group_black_24dp);
+                Drawable d = new IconicsDrawable(getContext())
+                        .icon(GoogleMaterial.Icon.gmd_people)
+                        .color(Color.RED)
+                        .sizeDp(10);
                 IV.setImageDrawable(d);
             }else if(image.equals("description".trim())) {
-                Drawable d = getContext().getResources().getDrawable(R.drawable.ic_description_black_24dp);
+                Drawable d = new IconicsDrawable(getContext())
+                        .icon(GoogleMaterial.Icon.gmd_description)
+                        .color(Color.RED)
+                        .sizeDp(10);
                 IV.setImageDrawable(d);
             }
-
             else{
-                Drawable d = getContext().getResources().getDrawable(R.mipmap.vote);
+                Drawable d = new IconicsDrawable(getContext())
+                        .icon(GoogleMaterial.Icon.gmd_settings_voice)
+                        .color(Color.RED)
+                        .sizeDp(10);
                 IV.setImageDrawable(d);
-
             }
 
         }

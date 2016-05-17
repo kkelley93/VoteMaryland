@@ -28,7 +28,6 @@ import java.util.Date;
 
 
 public class EventDetailActivity extends AppCompatActivity {
-
    public String eventName = "";
     public String eventAddress = "";
     public String eventStartTime = "";
@@ -122,6 +121,7 @@ public class EventDetailActivity extends AppCompatActivity {
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floating_action_button);
         fab.setImageDrawable(new IconicsDrawable(this, GoogleMaterial.Icon.gmd_favorite).actionBar().color(Color.WHITE));
     }
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

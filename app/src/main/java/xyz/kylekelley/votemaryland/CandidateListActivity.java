@@ -43,11 +43,12 @@ public class CandidateListActivity extends AppCompatActivity {
                 .withDisplayBelowStatusBar(false)
                 .withActionBarDrawerToggleAnimated(true)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_calendar).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_candidates).withIcon(FontAwesome.Icon.faw_gamepad).withIdentifier(2),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_polling_places).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(3),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_favorites).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(4),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_faq).withIcon(GoogleMaterial.Icon.gmd_assessment).withIdentifier(5)
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_calendar).withIcon(GoogleMaterial.Icon.gmd_perm_contact_calendar).withIdentifier(1),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_candidates).withIcon(GoogleMaterial.Icon.gmd_account_circle).withIdentifier(2),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_polling_places).withIcon(GoogleMaterial.Icon.gmd_place).withIdentifier(3),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_favorites).withIcon(GoogleMaterial.Icon.gmd_favorite).withIdentifier(4),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_faq).withIcon(GoogleMaterial.Icon.gmd_burst_mode).withIdentifier(5),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_registration).withIcon(GoogleMaterial.Icon.gmd_description).withIdentifier(6)
                 )
                 .withSelectedItem(2)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -67,10 +68,13 @@ public class CandidateListActivity extends AppCompatActivity {
                                     intent = new Intent(CandidateListActivity.this, PollingPlaceActivity.class);
                                     break;
                                 case 4:
-                                    intent = new Intent(CandidateListActivity.this, EventCalendarActivity.class);
+                                    intent = new Intent(CandidateListActivity.this, FavoritesActivity.class);
                                     break;
                                 case 5:
                                     intent = new Intent(CandidateListActivity.this, FaqActivity.class);
+                                    break;
+                                case 6:
+                                    intent = new Intent(CandidateListActivity.this, RegistrationWebViewActivity.class);
                                     break;
                             }
 
