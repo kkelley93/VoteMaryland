@@ -118,7 +118,7 @@ public class EventDetailActivity extends AppCompatActivity {
 
    private void loadBackdrop() {
         final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-        Glide.with(this).load(R.mipmap.pod).centerCrop().into(imageView);
+        Glide.with(this).load(R.drawable.event).centerCrop().into(imageView);
     }
 //    public void onClickToFav(View v){
 //
