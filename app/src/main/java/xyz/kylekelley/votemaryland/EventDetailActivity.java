@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -53,25 +54,6 @@ public class EventDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle(getString(R.string.app_name));
-
-//        result = new DrawerBuilder()
-//                .withActivity(this)
-//                .withToolbar(toolbar)
-//                .withFullscreen(true)
-//                .addDrawerItems(
-//                        new PrimaryDrawerItem().withName(R.string.drawer_item_calendar).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1),
-//                        new PrimaryDrawerItem().withName(R.string.drawer_item_candidates).withIcon(FontAwesome.Icon.faw_gamepad).withIdentifier(2),
-//                        new PrimaryDrawerItem().withName(R.string.drawer_item_polling_places).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(3),
-//                        new PrimaryDrawerItem().withName(R.string.drawer_item_favorites).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(4),
-//                        new PrimaryDrawerItem().withName(R.string.drawer_item_faq).withIcon(GoogleMaterial.Icon.gmd_assessment).withIdentifier(5)
-//                )
-//                .withSavedInstance(savedInstanceState)
-//                .build();
-
-        fillFab();
-        loadBackdrop();
 
 
         dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
@@ -109,7 +91,10 @@ public class EventDetailActivity extends AppCompatActivity {
 
         cAdapter.add(new CalObj("time",eventDate + "\n" + eventStartTime + "-" +
                 eventEndTime));
-        Toast.makeText(getApplicationContext(), Integer.toString(cAdapter.getCount()), Toast.LENGTH_SHORT).show();
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle(eventName);
+        fillFab();
+        loadBackdrop();
 //        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        CollapsingToolbarLayout collapsingToolbar =
 //                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
