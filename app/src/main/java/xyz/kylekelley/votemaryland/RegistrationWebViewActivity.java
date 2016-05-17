@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 public class RegistrationWebViewActivity extends AppCompatActivity {
 
@@ -24,8 +25,21 @@ public class RegistrationWebViewActivity extends AppCompatActivity {
     public void launchExternalWebview(View v){
         String url = "https://voterservices.elections.maryland.gov/OnlineVoterRegistration/InstructionsStep1";
         Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        databaseAccess.updateState();
+        databaseAccess.close();
         startActivity(myIntent);
 
+    }
+
+    public void launchCalendar(View V){
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        databaseAccess.updateState();
+        databaseAccess.close();
+        Intent myIntent = new Intent(RegistrationWebViewActivity.this, EventCalendarActivity.class);
+        RegistrationWebViewActivity.this.startActivity(myIntent);
     }
 
     public void launchNotification(View v){

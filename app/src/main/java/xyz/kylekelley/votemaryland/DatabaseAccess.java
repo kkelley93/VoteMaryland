@@ -7,6 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,5 +122,21 @@ public class DatabaseAccess {
             cursor.close();
         }
         return events;
+    }
+
+    public void updateState(){
+        database.execSQL("UPDATE State SET saved = 1");
+    }
+
+    public int checkState(){
+        Cursor cursor = null;
+        String Query = "SELECT saved FROM State";
+        cursor = database.rawQuery(Query, null);
+        int visited = 0;
+        if(cursor != null && cursor.moveToFirst()){
+            visited = cursor.getInt(0);
+        }
+
+        return visited;
     }
 }

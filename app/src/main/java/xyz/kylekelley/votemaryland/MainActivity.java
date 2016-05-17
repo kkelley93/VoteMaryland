@@ -82,6 +82,20 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         //result.setSelection(1);
+        int state;
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        state = databaseAccess.checkState();
+        databaseAccess.close();
+
+        if(state == 0){
+            Intent myIntent = new Intent(MainActivity.this, RegistrationWebViewActivity.class);
+            MainActivity.this.startActivity(myIntent);
+        }
+        else{
+            Intent myIntent = new Intent(MainActivity.this, EventCalendarActivity.class);
+            MainActivity.this.startActivity(myIntent);
+        }
     }
 
     @Override

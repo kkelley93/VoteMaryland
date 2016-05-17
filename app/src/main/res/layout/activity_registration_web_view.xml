@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:text="Already Registered"
         android:id="@+id/alreadyregistered"
-        android:onClick="launchCandidateList"
+        android:onClick="launchCalendar"
         android:layout_gravity="center_horizontal"/>
 
     <Button
