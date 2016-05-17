@@ -17,7 +17,15 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import xyz.kylekelley.votemaryland.adapter.CandidatesAdapter;
+import xyz.kylekelley.votemaryland.models.Candidate;
+import xyz.kylekelley.votemaryland.models.Contest;
+import xyz.kylekelley.votemaryland.models.VoterInfo;
+import xyz.kylekelley.votemaryland.models.singletons.UserPreferences;
 
 public class CandidateListActivity extends AppCompatActivity {
     private ListView listView;
@@ -98,8 +106,29 @@ public class CandidateListActivity extends AppCompatActivity {
         List<String> names = databaseAccess.getNames();
         databaseAccess.close();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
+        ArrayList<Contest> contests = new ArrayList<>();
+        VoterInfo voterInfo = UserPreferences.getVoterInfo();
+
+        contests.addAll(voterInfo.getFilteredContestsForParty(UserPreferences.getSelectedParty()));
+        ArrayList<String> candidateStrings = new ArrayList<>();
+        Iterator<Contest> contestIterator = voterInfo.contests.iterator();
+        while (contestIterator.hasNext()) {
+            Contest contest = contestIterator.next();
+            List<Candidate> candidates = contest.candidates;
+            if (candidates != null) {
+                Iterator<Candidate> candidateIterator = candidates.iterator();
+                while (candidateIterator.hasNext()) {
+                    Candidate candidate = candidateIterator.next();
+                    candidateStrings.add(candidate.name);
+                }
+            }
+
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, candidateStrings);
+//        CandidatesAdapter adapter1 = new CandidatesAdapter(this, contests.get(0).candidates);
         this.listView.setAdapter(adapter);
+//        this.listView.setAdapter(adapter1);
 
     }
 

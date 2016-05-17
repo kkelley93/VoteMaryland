@@ -1,19 +1,32 @@
 package xyz.kylekelley.votemaryland;
 
+import android.app.LoaderManager;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Loader;
+import android.database.Cursor;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
+
+import xyz.kylekelley.votemaryland.fragments.CivicFragment;
+import xyz.kylekelley.votemaryland.models.VoterInfo;
+import xyz.kylekelley.votemaryland.models.singletons.UserPreferences;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity implements CivicFragment.OnInteractionListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     private Drawer result = null;
 
@@ -24,9 +37,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.app_name);
-        getSupportActionBar().getThemedContext();
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setTitle(R.string.app_name);
+//        getSupportActionBar().getThemedContext();
+
+        AccountHeader headerResult = new AccountHeaderBuilder()
+                .withActivity(this)
+                .withHeaderBackground(R.drawable.header)
+                .addProfiles(
+                        new ProfileDrawerItem().withName("Mike Penz").withEmail("mikepenz@gmail.com").withIcon(getResources().getDrawable(R.drawable.profile))
+                )
+                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
+                    @Override
+                    public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+                        return false;
+                    }
+                })
+                .withSelectionListEnabledForSingleProfile(false)
+                .build();
 
         result = new DrawerBuilder(this)
                 //this layout have to contain child layouts
@@ -34,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 .withToolbar(toolbar)
                 .withDisplayBelowStatusBar(false)
                 .withActionBarDrawerToggleAnimated(true)
+//                .withAccountHeader(headerResult)
+                .withHeader(R.layout.nav_drawer_header)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName(R.string.drawer_item_calendar).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_candidates).withIcon(FontAwesome.Icon.faw_gamepad).withIdentifier(2),
@@ -96,6 +126,18 @@ public class MainActivity extends AppCompatActivity {
             Intent myIntent = new Intent(MainActivity.this, EventCalendarActivity.class);
             MainActivity.this.startActivity(myIntent);
         }
+        result.setSelection(1);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        CivicFragment fragment = new CivicFragment();
+        fragmentTransaction.add(fragment, "polling_fragment");
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -150,5 +192,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
 
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
+    @Override
+    public void onGoButtonPressed(View view) {
+
+    }
+
+    @Override
+    public void onAboutUsButtonPressed() {
+
+    }
+
+    @Override
+    public void onSelectContactButtonPressed(View view) {
+
+    }
+
+    @Override
+    public void searchedAddress(VoterInfo voterInfo) {
+        // set VoterInfo object on app singleton
+        if (voterInfo == null) {
+            UserPreferences.setSelectedParty("");
+            UserPreferences.setVoterInfo(null);
+        } else {
+//            UserPreferences.setSelectedParty(selectedParty);
+            UserPreferences.setVoterInfo(voterInfo);
+        }
+    }
 }

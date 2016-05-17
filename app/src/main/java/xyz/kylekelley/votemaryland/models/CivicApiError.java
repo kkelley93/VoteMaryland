@@ -1,10 +1,11 @@
 package xyz.kylekelley.votemaryland.models;
 
+import xyz.kylekelley.votemaryland.R;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import xyz.kylekelley.votemaryland.R;
 
 /**
  * Created by kathrynkillebrew on 7/17/14.
@@ -45,4 +46,3 @@ public class CivicApiError {
     public String message;  // seems to be same message as first error in list
     public List<Error> errors;
 }
-
