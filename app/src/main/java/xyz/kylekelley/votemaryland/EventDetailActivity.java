@@ -1,6 +1,7 @@
 package xyz.kylekelley.votemaryland;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -35,12 +42,38 @@ public class EventDetailActivity extends AppCompatActivity {
     Date current_date  = new Date();
     DatabaseAccess databaseAccess = null;
     public FloatingActionButton fab;
+    private Drawer result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle(getString(R.string.app_name));
+
+        result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(toolbar)
+                .withFullscreen(true)
+                .addDrawerItems(
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_calendar).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_candidates).withIcon(FontAwesome.Icon.faw_gamepad).withIdentifier(2),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_polling_places).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(3),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_favorites).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(4),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_faq).withIcon(GoogleMaterial.Icon.gmd_assessment).withIdentifier(5)
+                )
+                .withSavedInstance(savedInstanceState)
+                .build();
+
+        fillFab();
+        loadBackdrop();
+
+
         dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
         String QNAME = EventCalendarActivity.a;
         eventObjectsPlaceholder = new ArrayList<CalObj>();
@@ -77,11 +110,11 @@ public class EventDetailActivity extends AppCompatActivity {
         cAdapter.add(new CalObj("time",eventDate + "\n" + eventStartTime + "-" +
                 eventEndTime));
         Toast.makeText(getApplicationContext(), Integer.toString(cAdapter.getCount()), Toast.LENGTH_SHORT).show();
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(eventName);
-        loadBackdrop();
+//        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        CollapsingToolbarLayout collapsingToolbar =
+//                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+//        collapsingToolbar.setTitle(eventName);
+//        loadBackdrop();
 
     }
 
@@ -89,12 +122,26 @@ public class EventDetailActivity extends AppCompatActivity {
         final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
         Glide.with(this).load(R.mipmap.pod).centerCrop().into(imageView);
     }
-    public void onClickToFav(View v){
+//    public void onClickToFav(View v){
+//
+//            Intent myIntent = new Intent(EventDetailActivity.this, FavoritesActivity.class);
+//            startActivity(myIntent);
+//        setContentView(R.layout.activity_favorites);
+//
+//    }
 
-            Intent myIntent = new Intent(EventDetailActivity.this, FavoritesActivity.class);
-            startActivity(myIntent);
-        setContentView(R.layout.activity_favorites);
+    private void fillFab() {
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floating_action_button);
+        fab.setImageDrawable(new IconicsDrawable(this, GoogleMaterial.Icon.gmd_favorite).actionBar().color(Color.WHITE));
+    }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //add the values which need to be saved from the drawer to the bundle
+        outState = result.saveInstanceState(outState);
+        //add the values which need to be saved from the accountHeader to the bundle
+//        outState = headerResult.saveInstanceState(outState);
+        super.onSaveInstanceState(outState);
     }
 
 
