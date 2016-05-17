@@ -34,6 +34,7 @@ public class EventDetailActivity extends AppCompatActivity {
     public String eventStartTime = "";
     public String eventEndTime = "";
     public String eventDate = "";
+    public String eventDescription = "";
     DateFormat dateFormat ;
     Date temp = null ;
     ArrayList<CalObj> eventObjectsPlaceholder;
@@ -57,7 +58,7 @@ public class EventDetailActivity extends AppCompatActivity {
 
 
         dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
-        String QNAME = EventCalendarActivity.a;
+        int QNAME = EventCalendarActivity.a;
         eventObjectsPlaceholder = new ArrayList<CalObj>();
         cAdapter = new CalAdapter(this, R.layout.cal_detail_list_row, eventObjectsPlaceholder);
         listView = (ListView) findViewById(R.id.map_event);
@@ -74,23 +75,25 @@ public class EventDetailActivity extends AppCompatActivity {
                     }
             }
         });
+        ArrayList<Event> events = null;
 
-        one = databaseAccess.getCalEvent((QNAME));
-        Toast.makeText(getApplicationContext(), Integer.toString(one.size()), Toast.LENGTH_SHORT).show();
-
-            if (one != null) {
+        events = databaseAccess.getCalEvent((QNAME));
+        Event myEvent = events.get(0);
+            if (myEvent != null) {
                 //name_date_address_start_end
 
-                eventName = one.get(0);
-                eventDate = one.get(1);
-                eventAddress = one.get(2);
-                eventStartTime = one.get(3);
-                eventEndTime = one.get(4);
+                eventName = myEvent.name;
+                eventDate = myEvent.date;
+                eventAddress = myEvent.street + "\n" + myEvent.cityState + " " + myEvent.zip;
+                eventStartTime = myEvent.startTime;
+                eventEndTime = myEvent.endTime;
+                eventDescription = myEvent.description;
             }
-            cAdapter.add(new CalObj("dir",eventAddress));
+            cAdapter.add(new CalObj("dir",eventAddress,myEvent.id));
 
         cAdapter.add(new CalObj("time",eventDate + "\n" + eventStartTime + "-" +
-                eventEndTime));
+                eventEndTime, myEvent.id));
+        cAdapter.add(new CalObj("description", eventDescription, myEvent.id));
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(eventName);
         fillFab();

@@ -80,7 +80,7 @@
                 android:layout_below="@id/e_name"
                 android:id="@+id/map_event"
                 android:layout_width="match_parent"
-                android:layout_height="255dp">
+                android:layout_height="500dp">
             </ListView>
 
         </LinearLayout>
@@ -91,7 +91,7 @@
         android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:0layout_margin="16dp"
+        android:layout_margin="16dp"
         android:clickable="true"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end" />
