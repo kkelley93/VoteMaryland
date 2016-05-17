@@ -24,11 +24,11 @@ public class EventCalendarActivity extends AppCompatActivity {
     Date temp = null ;
     ArrayList<CalObj> eventObjectsPlaceholder;
     CalAdapter cAdapter;
-    ArrayList<String> one = null;
+    ArrayList<Event> one = null;
     ListView listView;
     Date current_date  = new Date();
     DatabaseAccess databaseAccess = null;
-    static String a = "";
+    static int a;
     private Drawer result = null;
     
     public void call( Date date){
@@ -37,20 +37,26 @@ public class EventCalendarActivity extends AppCompatActivity {
         }
         cAdapter.clear();
         temp = date;
-        String a = "";
-        String b = "";
+        String type, name;
+        int id;
         one = databaseAccess.getCalName(dateFormat.format(date));
         //two = databaseAccess.getCalImage(dateFormat.format(date));
         if (one != null) {
-            for(int i = 0; i < one.size(); i+=2) {
-                b = one.get(i);
-                a = one.get(i + 1);
-                cAdapter.add(new CalObj(a, b));
+            for(int i = 0; i < one.size(); i+=1) {
+                Event currentEvent = one.get(i);
+                name = currentEvent.name;
+                type = currentEvent.type;
+                id = currentEvent.id;
+                cAdapter.add(new CalObj(type, name, id));
             }
         }
         if(cAdapter.isEmpty()){
             one = null;
-            cAdapter.add(new CalObj("NONE","Sorry No Events For This Day"));
+            cAdapter.add(new CalObj("NONE","Sorry No Events For This Day",0));
+        }
+        if(cAdapter.isEmpty()){
+            one = null;
+            cAdapter.add(new CalObj("NONE","Sorry No Events For This Day",0));
         }
     }
 
@@ -137,7 +143,7 @@ public class EventCalendarActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (one != null) {
                     CalObj current = cAdapter.getItem(position);
-                    a = current.get_title();
+                    a = current.get_id();
                     Intent myIntent = new Intent(EventCalendarActivity.this, EventDetailActivity.class);
                     EventCalendarActivity.this.startActivity(myIntent);
                 }
@@ -157,20 +163,26 @@ public class EventCalendarActivity extends AppCompatActivity {
                 }
                 cAdapter.clear();
                 temp = date;
-                String a = "";
-                String b = "";
+                String type, name;
+                int id;
                 one = databaseAccess.getCalName(dateFormat.format(date));
                 //two = databaseAccess.getCalImage(dateFormat.format(date));
                 if (one != null) {
-                for(int i = 0; i < one.size(); i+=2) {
-                        b = one.get(i);
-                        a = one.get(i + 1);
-                        cAdapter.add(new CalObj(a, b));
+                    for(int i = 0; i < one.size(); i+=1) {
+                        Event currentEvent = one.get(i);
+                        name = currentEvent.name;
+                        type = currentEvent.type;
+                        id = currentEvent.id;
+                        cAdapter.add(new CalObj(type, name, id));
                     }
                 }
                 if(cAdapter.isEmpty()){
                     one = null;
-                    cAdapter.add(new CalObj("NONE","Sorry No Events For This Day"));
+                    cAdapter.add(new CalObj("NONE","Sorry No Events For This Day",0));
+                }
+                if(cAdapter.isEmpty()){
+                    one = null;
+                    cAdapter.add(new CalObj("NONE","Sorry No Events For This Day",0));
                 }
             }
             public void setBackgroundDrawableForDate(Drawable drawable, Date date){

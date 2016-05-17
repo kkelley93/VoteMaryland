@@ -39,8 +39,10 @@ public class MainActivity extends AppCompatActivity {
                         new PrimaryDrawerItem().withName(R.string.drawer_item_candidates).withIcon(FontAwesome.Icon.faw_gamepad).withIdentifier(2),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_polling_places).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(3),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_favorites).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(4),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_faq).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(5)
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_faq).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(5),
+                        new PrimaryDrawerItem().withName("Registration").withIcon(FontAwesome.Icon.faw_folder).withIdentifier(6)
                 )
+                .withSelectedItem(6)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -63,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
                                 case 5:
                                     intent = new Intent(MainActivity.this, FaqActivity.class);
                                     break;
+                                case 6:
+                                    intent = new Intent(MainActivity.this, RegistrationWebViewActivity.class);
+                                    break;
                             }
 
                             if (intent != null) {
@@ -76,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 .withSavedInstance(savedInstanceState)
                 .build();
 
-        result.setSelection(1);
+        //result.setSelection(1);
     }
 
     @Override

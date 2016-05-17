@@ -7,11 +7,13 @@ public class CalObj {
 
     public String image;
     public String title;
+    public String description;
+    public int id;
 
-    public CalObj(String i, String s){
+    public CalObj(String i, String s, int id){
         image = i;
         title = s;
-
+        this.id = id;
     }
     public String get_title(){
         return title;
@@ -19,5 +21,6 @@ public class CalObj {
     public String get_image(){
         return image;
     }
+    public int get_id(){ return id; }
 
 }

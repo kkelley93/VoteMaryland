@@ -9,14 +9,12 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="50dp"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:fitsSystemWindows="true"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-    <!-- the layout which will contain (host) the drawerLayout -->
     <FrameLayout
         android:id="@+id/drawer_container"
         android:layout_width="match_parent"
@@ -29,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <TextView
                 android:id="@+id/txtLabel"
                 android:layout_width="wrap_content"
@@ -38,6 +37,10 @@
                 android:textSize="16sp" />
         </FrameLayout>
     </FrameLayout>
+
+
+    <!-- the layout which will contain (host) the drawerLayout -->
+
 </RelativeLayout>
 <!--<?xml version="1.0" encoding="utf-8"?>-->
 <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->

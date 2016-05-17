@@ -73,35 +73,53 @@ public class DatabaseAccess {
         cursor.close();
         return list;
     }
-    public ArrayList<String> getCalName(String date ) {
-        ArrayList<String> name = new ArrayList<>();
+    public ArrayList<Event> getCalName(String date ) {
+        ArrayList<Event> events = new ArrayList<>();
         Cursor cursor = null;
-        String Query = "SELECT Name, Type FROM Events WHERE DATE ='"+date+"'" ;
+        String Query = "SELECT Name, Type, _id FROM Events WHERE DATE ='"+date+"'" ;
         cursor = database.rawQuery(Query, null);
+        Event myEvent;
+        String name, type;
+        int id;
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                name.add(cursor.getString(0).trim());
-                name.add(cursor.getString(1).trim());
+                name = cursor.getString(0).trim();
+                type = cursor.getString(1).trim();
+                id = cursor.getInt(2);
+                myEvent = new Event(name, type, id);
+                events.add(myEvent);
             } while (cursor.moveToNext());
             cursor.close();
         }
-        return name;
+        return events;
     }
-    public ArrayList<String> getCalEvent(String name ) {
-        ArrayList<String> name_date_address_start_end = new ArrayList<>();
+    public ArrayList<Event> getCalEvent(int id) {
+        ArrayList<Event> events = new ArrayList<Event>();
+        Event myEvent;
         Cursor cursor = null;
-        String Query = "SELECT Name,DATE,Address,Start_Time,End_Time FROM Events WHERE Name = '"+name+"'" ;
+        String Query = "SELECT Name, LocationTitle, Street, CityState, Zip, Type, Start_Time, End_Time, DATE, Description, _id FROM Events WHERE _id = "+Integer.toString(id);
         cursor = database.rawQuery(Query, null);
+        String eventName, locationTitle, street, cityState, zip, type, startTime, endTime, date, description;
+        int favorited = 0;
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                name_date_address_start_end.add(cursor.getString(0).trim());
-                name_date_address_start_end.add(cursor.getString(1).trim());
-                name_date_address_start_end.add(cursor.getString(2).trim());
-                name_date_address_start_end.add(cursor.getString(3).trim());
-                name_date_address_start_end.add(cursor.getString(4).trim());
+                eventName = cursor.getString(0).trim();
+                locationTitle = cursor.getString(1).trim();
+                street = cursor.getString(2).trim();
+                cityState = cursor.getString(3).trim();
+                zip = cursor.getString(4).trim();
+                type = cursor.getString(5).trim();
+                startTime = cursor.getString(6).trim();
+                endTime = cursor.getString(7).trim();
+                date = cursor.getString(8).trim();
+                description = cursor.getString(9).trim();
+                id = cursor.getInt(10);
+                myEvent = new Event(eventName, locationTitle, street, cityState, zip, type, startTime, endTime, date, description, favorited, id);
+                events.add(myEvent);
+
             } while (cursor.moveToNext());
             cursor.close();
         }
-        return name_date_address_start_end;
+        return events;
     }
 }
