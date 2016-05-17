@@ -174,7 +174,9 @@ public class EventCalendarActivity extends AppCompatActivity {
                 if (one != null) {
                     CalObj current = cAdapter.getItem(position);
                     a = current.get_id();
+
                     Intent myIntent = new Intent(EventCalendarActivity.this, EventDetailActivity.class);
+                    myIntent.putExtra("id", current.get_id());
                     EventCalendarActivity.this.startActivity(myIntent);
                 }
             }

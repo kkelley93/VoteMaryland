@@ -59,13 +59,15 @@ public class EventDetailActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
 
 
         dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
         Intent receiveIntent = getIntent();
-        int QNAME = receiveIntent.getIntExtra("id", 0);
-//        int QNAME = EventCalendarActivity.a;
+//        int QNAME = receiveIntent.getIntExtra("id", 0);
+        int QNAME = EventCalendarActivity.a;
         eventObjectsPlaceholder = new ArrayList<CalObj>();
         cAdapter = new CalAdapter(this, R.layout.cal_detail_list_row, eventObjectsPlaceholder);
         listView = (ListView) findViewById(R.id.map_event);

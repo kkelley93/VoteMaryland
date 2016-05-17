@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -29,7 +28,7 @@ public class RegistrationWebViewActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setTitle(R.string.reg_title);
 
         result = new DrawerBuilder(this)
                 //this layout have to contain child layouts
@@ -99,17 +98,12 @@ public class RegistrationWebViewActivity extends AppCompatActivity {
 
     }
     public void alreadyRegistered(View v){
-        Intent myIntent = new Intent(RegistrationWebViewActivity.this, EventCalendarActivity.class);
-        startActivity(myIntent);
-    }
-
-    public void launchCalendar(View V){
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         databaseAccess.updateState();
         databaseAccess.close();
         Intent myIntent = new Intent(RegistrationWebViewActivity.this, EventCalendarActivity.class);
-        RegistrationWebViewActivity.this.startActivity(myIntent);
+        startActivity(myIntent);
     }
 
     public void launchNotification(View v){

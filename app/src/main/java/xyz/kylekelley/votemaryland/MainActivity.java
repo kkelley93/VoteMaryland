@@ -126,7 +126,7 @@ public class MainActivity extends FragmentActivity implements CivicFragment.OnIn
             Intent myIntent = new Intent(MainActivity.this, EventCalendarActivity.class);
             MainActivity.this.startActivity(myIntent);
         }
-        result.setSelection(1);
+//        result.setSelection(1);
     }
 
     @Override
