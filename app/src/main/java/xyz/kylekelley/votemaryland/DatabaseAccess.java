@@ -139,4 +139,33 @@ public class DatabaseAccess {
 
         return visited;
     }
+
+    public void addFavorite(int id){
+        database.execSQL("UPDATE Events SET Favorited = 1 WHERE _id = "+Integer.toString(id));
+    }
+
+    public ArrayList<Event> getFavorites(){
+        ArrayList<Event> favorites = new ArrayList<Event>();
+        Cursor cursor = null;
+        String Query = "SELECT _id, name FROM Events WHERE favorited = 1";
+        cursor = database.rawQuery(Query, null);
+        Event myEvent;
+        String name;
+        int id;
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                id = cursor.getInt(0);
+                name = cursor.getString(1);
+                myEvent = new Event(name, id);
+                favorites.add(myEvent);
+
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return favorites;
+    }
+
+    public void removeFavorite(int id){
+        database.execSQL("UPDATE Events SET Favorited = 0 WHERE _id = " + Integer.toString(id));
+    }
 }

@@ -104,7 +104,7 @@ public class EventCalendarActivity extends AppCompatActivity {
                                     intent = new Intent(EventCalendarActivity.this, PollingPlaceActivity.class);
                                     break;
                                 case 4:
-                                    intent = new Intent(EventCalendarActivity.this, EventCalendarActivity.class);
+                                    intent = new Intent(EventCalendarActivity.this, FavoritesActivity.class);
                                     break;
                                 case 5:
                                     intent = new Intent(EventCalendarActivity.this, FaqActivity.class);
@@ -143,8 +143,9 @@ public class EventCalendarActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (one != null) {
                     CalObj current = cAdapter.getItem(position);
-                    a = current.get_id();
+//                    a = current.get_id();
                     Intent myIntent = new Intent(EventCalendarActivity.this, EventDetailActivity.class);
+                    myIntent.putExtra("id", current.get_id());
                     EventCalendarActivity.this.startActivity(myIntent);
                 }
             }

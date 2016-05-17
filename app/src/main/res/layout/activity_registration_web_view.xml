@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,61 +8,132 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    android:columnCount="1"
     android:useDefaultMargins="true"
     android:layout_gravity="center_horizontal">
 
 
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:id="@+id/imageView"
-        android:src="@mipmap/mdflag"
-        android:layout_gravity="center_horizontal"/>
+    <!--<ImageView-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:id="@+id/imageView"-->
+        <!--android:src="@mipmap/mdflag"-->
+        <!--android:layout_gravity="center_horizontal"/>-->
+    <!--<CheckBox-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="At least 16 years old"-->
+        <!--android:id="@+id/checkBox"-->
+        <!--android:checked="false"-->
+        <!--android:layout_gravity="center_horizontal"/>-->
+
+    <!--<CheckBox-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Maryland resident"-->
+        <!--android:id="@+id/checkBox2"-->
+        <!--android:checked="false"-->
+        <!--android:layout_gravity="center_horizontal"/>-->
+
+    <!--<CheckBox-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Not under gurdanship for mental disability "-->
+        <!--android:id="@+id/checkBox3"-->
+        <!--android:checked="false" />-->
+
+    <!--<CheckBox-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Not convicted of buying or selling votes"-->
+        <!--android:id="@+id/checkBox4"-->
+        <!--android:checked="false" />-->
+
+    <!--<CheckBox-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Not been convicted for a felony"-->
+        <!--android:id="@+id/checkBox5"-->
+        <!--android:checked="false" />-->
+
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Registration Application "-->
+        <!--android:id="@+id/registrationapp"-->
+        <!--android:onClick="launchExternalWebview"-->
+        <!--android:layout_gravity="center_horizontal"/>-->
+
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Already Registered"-->
+        <!--android:id="@+id/alreadyregistered"-->
+        <!--android:onClick="launchCalendar"-->
+        <!--android:layout_gravity="center_horizontal"/>-->
+
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Notification Test"-->
+        <!--android:id="@+id/notificationtest"-->
+        <!--android:onClick="launchNotification"-->
+        <!--android:layout_gravity="center_horizontal"/>-->
+
     <CheckBox
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="At least 16 years old"
         android:id="@+id/checkBox"
+
         android:checked="false"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_above="@+id/checkBox2"
+         />
 
     <CheckBox
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Maryland resident"
         android:id="@+id/checkBox2"
         android:checked="false"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_above="@+id/checkBox3"
+         />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Not under gurdanship for mental disability "
         android:id="@+id/checkBox3"
-        android:checked="false" />
+        android:checked="false"
+        android:layout_above="@+id/checkBox4"
+         />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Not convicted of buying or selling votes"
         android:id="@+id/checkBox4"
-        android:checked="false" />
+        android:checked="false"
+        android:layout_centerVertical="true"
+         />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Not been convicted for a felony"
         android:id="@+id/checkBox5"
-        android:checked="false" />
+        android:checked="false"
+        android:layout_below="@+id/checkBox4"
+         />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registration Application "
+        android:text="Register"
         android:id="@+id/registrationapp"
         android:onClick="launchExternalWebview"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_below="@+id/checkBox5"
+        android:gravity="center_horizontal"
+         />
 
     <Button
         android:layout_width="wrap_content"
@@ -70,7 +141,8 @@
         android:text="Already Registered"
         android:id="@+id/alreadyregistered"
         android:onClick="launchCalendar"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_below="@+id/registrationapp"
+         />
 
     <Button
         android:layout_width="wrap_content"
@@ -78,8 +150,19 @@
         android:text="Notification Test"
         android:id="@+id/notificationtest"
         android:onClick="launchNotification"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/alreadyregistered"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@mipmap/mdflag"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/registrationapp"
+        android:layout_above="@+id/checkBox"
+        android:layout_alignEnd="@+id/checkBox3" />
 
 
-
-</GridLayout>
+</RelativeLayout>

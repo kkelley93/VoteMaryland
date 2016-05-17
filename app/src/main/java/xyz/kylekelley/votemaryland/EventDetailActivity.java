@@ -1,11 +1,16 @@
 package xyz.kylekelley.votemaryland;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,6 +40,7 @@ public class EventDetailActivity extends AppCompatActivity {
     public String eventEndTime = "";
     public String eventDate = "";
     public String eventDescription = "";
+    public int id;
     DateFormat dateFormat ;
     Date temp = null ;
     ArrayList<CalObj> eventObjectsPlaceholder;
@@ -58,7 +64,9 @@ public class EventDetailActivity extends AppCompatActivity {
 
 
         dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
-        int QNAME = EventCalendarActivity.a;
+        Intent receiveIntent = getIntent();
+        int QNAME = receiveIntent.getIntExtra("id", 0);
+//        int QNAME = EventCalendarActivity.a;
         eventObjectsPlaceholder = new ArrayList<CalObj>();
         cAdapter = new CalAdapter(this, R.layout.cal_detail_list_row, eventObjectsPlaceholder);
         listView = (ListView) findViewById(R.id.map_event);
@@ -88,6 +96,7 @@ public class EventDetailActivity extends AppCompatActivity {
                 eventStartTime = myEvent.startTime;
                 eventEndTime = myEvent.endTime;
                 eventDescription = myEvent.description;
+                id = myEvent.id;
             }
             cAdapter.add(new CalObj("dir",eventAddress,myEvent.id));
 
@@ -130,6 +139,27 @@ public class EventDetailActivity extends AppCompatActivity {
         //add the values which need to be saved from the accountHeader to the bundle
 //        outState = headerResult.saveInstanceState(outState);
         super.onSaveInstanceState(outState);
+    }
+
+    public void addToFavorites(View v){
+
+        int favId = id;
+        DatabaseAccess databaseAccess;
+        databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        databaseAccess.addFavorite(id);
+        databaseAccess.close();
+
+        Snackbar.make(v, eventName + " has been added to your favorites", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+
+        /*create notifications*/
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        builder.setSmallIcon(R.drawable.ic_event_available_black_24dp);
+        builder.setContentTitle("Favorite event coming up!");
+        builder.setContentText("Reminder: "+eventName + " is today!");
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(1111, builder.build());
     }
 
 
