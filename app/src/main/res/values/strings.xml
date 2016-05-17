@@ -123,4 +123,6 @@
     <string name="polling_places">During early voting you can vote at any early voting center in the jurisdiction where you live.On election day, you should vote where you live.If you moved and have not updated your voter registration information, enter your new address in the Polling Place Locator found on online.</string>
     <string name="reg_deadlines">Deadline to register to vote for the general election - October 18, 2016\nFirst day for early voting - October 27,2016\nDeadline for a registered voter to request a mailed absentee ballot November 1, 2016 </string>
 
+
+    <string name="button_undo">undo</string>
     </resources>
