@@ -193,8 +193,8 @@ public class PollingPlaceActivity extends AppCompatActivity {
     }
 
 
-    }
-                    @Override
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState = result.saveInstanceState(outState);
         super.onSaveInstanceState(outState);
