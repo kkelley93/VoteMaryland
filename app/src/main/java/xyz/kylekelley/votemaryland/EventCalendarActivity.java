@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -17,7 +18,6 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 import java.text.DateFormat;
@@ -35,7 +35,7 @@ public class EventCalendarActivity extends AppCompatActivity {
     DatabaseAccess databaseAccess = null;
     static int a;
     private Drawer result = null;
-    
+
     public void call( Date date){
         if(one != null) {
             one.clear();
@@ -76,33 +76,38 @@ public class EventCalendarActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        AccountHeader headerResult = new AccountHeaderBuilder()
-                .withActivity(this)
-                .withHeaderBackground(R.drawable.header)
-                .withCompactStyle(true)
-                .withTranslucentStatusBar(true)
-                .addProfiles(
-                        new ProfileDrawerItem().withName("Mike Penz").withEmail("mikepenz@gmail.com").withIcon(getResources().getDrawable(R.drawable.profile))
-                )
-                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
-                    @Override
-                    public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
-                        return false;
-                    }
-                })
-                .withSelectionListEnabledForSingleProfile(false)
-                .build();
+//        AccountHeader headerResult = new AccountHeaderBuilder()
+//                .withActivity(this)
+//                .withHeaderBackground(R.drawable.header)
+//                .withCompactStyle(true)
+//                .withTranslucentStatusBar(false)
+//                .addProfiles(
+//                        new ProfileDrawerItem().withName("Mike Penz").withEmail("mikepenz@gmail.com").withIcon(getResources().getDrawable(R.drawable.profile))
+//                )
+//                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
+//                    @Override
+//                    public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+//                        return false;
+//                    }
+//                })
+//                .withSelectionListEnabledForSingleProfile(false)
+//                .withOnAccountHeaderSelectionViewClickListener(new AccountHeader.OnAccountHeaderSelectionViewClickListener() {
+//                    @Override
+//                    public boolean onClick(View view, IProfile profile) {
+//                        Toast.makeText(view.getContext(), "Header click", Toast.LENGTH_SHORT).show();
+//                        return false;
+//                    }
+//                })
+//                .build();
 
 
         result = new DrawerBuilder(this)
                 //this layout have to contain child layouts
-//                .withRootView(R.id.drawer_container)
-                .withActivity(this)
+                .withRootView(R.id.drawer_container)
+//                .withActivity(this)
                 .withToolbar(toolbar)
                 .withDisplayBelowStatusBar(false)
                 .withActionBarDrawerToggleAnimated(true)
-//                .withAccountHeader(headerResult)
-                .withHeader(R.layout.nav_drawer_header)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName(R.string.drawer_item_calendar).withIcon(GoogleMaterial.Icon.gmd_perm_contact_calendar).withIdentifier(1),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_candidates).withIcon(GoogleMaterial.Icon.gmd_account_circle).withIdentifier(2),
@@ -112,45 +117,45 @@ public class EventCalendarActivity extends AppCompatActivity {
                         new PrimaryDrawerItem().withName(R.string.drawer_item_registration).withIcon(GoogleMaterial.Icon.gmd_description).withIdentifier(6)
 
                 )
-                                .withSelectedItem(1)
-                                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                                    @Override
-                                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                .withSelectedItem(1)
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
 
-                                        if (drawerItem != null) {
-                                            Intent intent = null;
-                                            switch ((int) drawerItem.getIdentifier()) {
-                                                case 1:
-                                                    intent = new Intent(EventCalendarActivity.this, EventCalendarActivity.class);
-                                                    break;
-                                                case 2:
-                                                    intent = new Intent(EventCalendarActivity.this, CandidateListActivity.class);
-                                                    break;
-                                                case 3:
-                                                    intent = new Intent(EventCalendarActivity.this, PollingPlaceActivity.class);
-                                                    break;
-                                                case 4:
-                                                    intent = new Intent(EventCalendarActivity.this, FavoritesActivity.class);
-                                                    break;
-                                                case 5:
-                                                    intent = new Intent(EventCalendarActivity.this, FaqActivity.class);
-                                                    break;
-                                                case 6:
-                                                    intent = new Intent(EventCalendarActivity.this, RegistrationWebViewActivity.class);
-                                                    break;
+                        if (drawerItem != null) {
+                            Intent intent = null;
+                            switch ((int) drawerItem.getIdentifier()) {
+                                case 1:
+                                    intent = new Intent(EventCalendarActivity.this, EventCalendarActivity.class);
+                                    break;
+                                case 2:
+                                    intent = new Intent(EventCalendarActivity.this, CandidateListActivity.class);
+                                    break;
+                                case 3:
+                                    intent = new Intent(EventCalendarActivity.this, PollingPlaceActivity.class);
+                                    break;
+                                case 4:
+                                    intent = new Intent(EventCalendarActivity.this, FavoritesActivity.class);
+                                    break;
+                                case 5:
+                                    intent = new Intent(EventCalendarActivity.this, FaqActivity.class);
+                                    break;
+                                case 6:
+                                    intent = new Intent(EventCalendarActivity.this, RegistrationWebViewActivity.class);
+                                    break;
 
-                                            }
+                            }
 
-                                            if (intent != null) {
-                                                EventCalendarActivity.this.startActivity(intent);
-                                            }
-                                        }
+                            if (intent != null) {
+                                EventCalendarActivity.this.startActivity(intent);
+                            }
+                        }
 
-                                        return false;
-                                    }
-                                })
-//                .withSavedInstance(savedInstanceState)
-                                .build();
+                        return false;
+                    }
+                })
+                .withSavedInstance(savedInstanceState)
+                .build();
 
 //        result.setSelection(1);
 
@@ -182,7 +187,7 @@ public class EventCalendarActivity extends AppCompatActivity {
             }
         });
 
-         CaldroidListener listener = new CaldroidListener() {
+        CaldroidListener listener = new CaldroidListener() {
             @Override
             public void onSelectDate(Date date, View view) {
                 if(temp != null) {

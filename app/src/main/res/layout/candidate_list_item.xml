@@ -17,13 +17,41 @@
 
         <!--android:contentDescription="@string/accessibility.description.candidate"/>-->
 
+    <!--<ImageView-->
+        <!--android:id="@+id/eventImage"-->
+        <!--android:layout_width = "20dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:gravity="center_vertical"-->
+        <!--/>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/eventTitle"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:textSize="20dp"-->
+        <!--android:layout_toRightOf="@id/eventImage"-->
+        <!--android:gravity="center_vertical"-->
+        <!--/>-->
+
     <TextView
-        android:id="@+id/candidate_list_item_name"
-        android:layout_toRightOf="@+id/candidate_list_item_picture"
+        android:id="@+id/candidate_name"
         style="@style/list_item_header" />
     <TextView
-        android:id="@+id/candidate_list_item_party"
-        android:layout_below="@+id/candidate_list_item_name"
-        android:layout_toRightOf="@+id/candidate_list_item_picture"
-        style="@style/list_item_content" />
+        android:id="@+id/candidate_party"
+        android:layout_below="@+id/candidate_name"
+        style="@style/list_item_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="20dp"
+        android:gravity="center_vertical"
+        />
+
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -29,6 +30,9 @@ import xyz.kylekelley.votemaryland.models.singletons.UserPreferences;
 
 public class CandidateListActivity extends AppCompatActivity {
     private ListView listView;
+    private ArrayList<Candidate> listEntries;
+    private CandidatesAdapter candidatesAdapter;
+    public static Candidate cand;
     
     private Drawer result = null;
 
@@ -101,33 +105,59 @@ public class CandidateListActivity extends AppCompatActivity {
         //Opens connection to MD_Candidates.db, runs getNames() function in DatabaseAccess class
         //displays names of candidates in a generic ListView.
         this.listView = (ListView) findViewById(R.id.listView);
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-        List<String> names = databaseAccess.getNames();
-        databaseAccess.close();
+//        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+//        databaseAccess.open();
+//        List<String> names = databaseAccess.getNames();
+//        databaseAccess.close();
+
+
+        listEntries = new ArrayList<Candidate>();
 
         ArrayList<Contest> contests = new ArrayList<>();
         VoterInfo voterInfo = UserPreferences.getVoterInfo();
+        candidatesAdapter = new CandidatesAdapter(this, R.layout.candidate_list_item, listEntries);
+        listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(candidatesAdapter);
 
         contests.addAll(voterInfo.getFilteredContestsForParty(UserPreferences.getSelectedParty()));
-        ArrayList<String> candidateStrings = new ArrayList<>();
+
+//        ArrayList<String> candidateStrings = new ArrayList<>();
         Iterator<Contest> contestIterator = voterInfo.contests.iterator();
+
         while (contestIterator.hasNext()) {
+
             Contest contest = contestIterator.next();
             List<Candidate> candidates = contest.candidates;
             if (candidates != null) {
+
                 Iterator<Candidate> candidateIterator = candidates.iterator();
                 while (candidateIterator.hasNext()) {
                     Candidate candidate = candidateIterator.next();
-                    candidateStrings.add(candidate.name);
+                    candidatesAdapter.add(candidate);
+//                    candidateStrings.add(candidate.name);
                 }
             }
 
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, candidateStrings);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, candidateStrings);
 //        CandidatesAdapter adapter1 = new CandidatesAdapter(this, contests.get(0).candidates);
-        this.listView.setAdapter(adapter);
+//        this.listView.setAdapter(adapter);
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Candidate candidate = candidatesAdapter.getItem(position);
+//                    ItemClicked current = parent.getItemAtPosition(position);
+//                    a = current.get_id();
+                    cand = candidate;
+                    Intent myIntent = new Intent(CandidateListActivity.this, CandidateDetailActivity.class);
+                    CandidateListActivity.this.startActivity(myIntent);
+            }
+        });
+
 //        this.listView.setAdapter(adapter1);
 
     }

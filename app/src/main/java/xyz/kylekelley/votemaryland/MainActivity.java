@@ -41,20 +41,20 @@ public class MainActivity extends FragmentActivity implements CivicFragment.OnIn
 //        getSupportActionBar().setTitle(R.string.app_name);
 //        getSupportActionBar().getThemedContext();
 
-        AccountHeader headerResult = new AccountHeaderBuilder()
-                .withActivity(this)
-                .withHeaderBackground(R.drawable.header)
-                .addProfiles(
-                        new ProfileDrawerItem().withName("Mike Penz").withEmail("mikepenz@gmail.com").withIcon(getResources().getDrawable(R.drawable.profile))
-                )
-                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
-                    @Override
-                    public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
-                        return false;
-                    }
-                })
-                .withSelectionListEnabledForSingleProfile(false)
-                .build();
+//        AccountHeader headerResult = new AccountHeaderBuilder()
+//                .withActivity(this)
+//                .withHeaderBackground(R.drawable.header)
+//                .addProfiles(
+//                        new ProfileDrawerItem().withName("Mike Penz").withEmail("mikepenz@gmail.com").withIcon(getResources().getDrawable(R.drawable.profile))
+//                )
+//                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
+//                    @Override
+//                    public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+//                        return false;
+//                    }
+//                })
+//                .withSelectionListEnabledForSingleProfile(false)
+//                .build();
 
         result = new DrawerBuilder(this)
                 //this layout have to contain child layouts
@@ -63,7 +63,7 @@ public class MainActivity extends FragmentActivity implements CivicFragment.OnIn
                 .withDisplayBelowStatusBar(false)
                 .withActionBarDrawerToggleAnimated(true)
 //                .withAccountHeader(headerResult)
-                .withHeader(R.layout.nav_drawer_header)
+//                .withHeader(R.layout.nav_drawer_header)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName(R.string.drawer_item_calendar).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_candidates).withIcon(FontAwesome.Icon.faw_gamepad).withIdentifier(2),
