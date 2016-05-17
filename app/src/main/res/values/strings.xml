@@ -10,7 +10,9 @@
     <string name="drawer_item_polling_places">Polling Places</string>
     <string name="drawer_item_favorites">Favorites</string>
     <string name="drawer_item_faq">FAQ</string>
-
+    <string name="drawer_item_registration">Registration</string>
+    <string name="undo">UNDO</string>
+    <string name="deleted">Deleted</string>
     <string name="feedback.link">Report an Error</string>
     <string name="feedback.loading">Loading feedback form…</string>
 

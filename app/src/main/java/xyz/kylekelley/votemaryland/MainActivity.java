@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                                     intent = new Intent(MainActivity.this, PollingPlaceActivity.class);
                                     break;
                                 case 4:
-                                    intent = new Intent(MainActivity.this, EventCalendarActivity.class);
+                                    intent = new Intent(MainActivity.this, FavoritesActivity.class);
                                     break;
                                 case 5:
                                     intent = new Intent(MainActivity.this, FaqActivity.class);
