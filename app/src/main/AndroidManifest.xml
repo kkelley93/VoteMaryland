@@ -47,7 +47,10 @@
             android:theme="@style/AppTheme.NoActionBar"
             />
 
-        <activity android:name=".FaqActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".FaqActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
 
         <activity
             android:name=".EventDetailActivity"
@@ -65,7 +68,15 @@
         <activity
             android:name=".CandidateDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:parentActivityName=".CandidateListActivity"
+            >
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CandidateListActivity"
+                />
+
+        </activity>
 
         <activity
             android:name=".FavoritesActivity"
